@@ -58,16 +58,19 @@ window.MKAuction = {
         }
     },
 
-    placeUserBid(amount) {
+    async placeUserBid(amount) {
         if (amount <= this.currentBid) {
             if (window.MKApp) window.MKApp.notify('BID ERROR', 'Your bid must be higher than ₹' + this.currentBid, 'orange');
             return false;
         }
 
+        const userName = (window.MKApp && window.MKApp.userSession && window.MKApp.userSession.name) ? window.MKApp.userSession.name : "Verified Trader";
+        const apiRes = await window.MKAPI.placeBid(amount, userName);
+
         this.currentBid = amount;
         this.bidsStream.unshift({
             id: Date.now(),
-            buyer: "Rajesh Patel (Farmer Self-Bid/Verified)",
+            buyer: `${userName} (Verified)`,
             amount: amount,
             time: "Just now",
             status: "Leading"

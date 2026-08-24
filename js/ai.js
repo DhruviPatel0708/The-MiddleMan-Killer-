@@ -123,7 +123,7 @@ window.MKAI = {
         }, 600);
     },
 
-    sendKrishiAiMessage(userText) {
+    async sendKrishiAiMessage(userText) {
         const messagesContainer = document.getElementById('krishiChatMessages');
         if (!messagesContainer || !userText.trim()) return;
 
@@ -136,22 +136,22 @@ window.MKAI = {
         messagesContainer.appendChild(userDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-        let botReply = "";
+        let botReply = await window.MKAPI.sendKrishiChat(userText, lang);
 
-        if (lang === 'gu') {
-            botReply = "નમસ્તે! આજે ગુજરાતની મંડીઓમાં ઘઉં, ડાંગર અને મગફળીના ભાવમાં +૬.૮% નો વધારો જોવા મળ્યો છે. લાઇવ હરાજીમાં પાક મુકવાથી વધુ નફો મળશે.";
-        } else if (lang === 'hi') {
-            botReply = "नमस्ते! आज गुजरात मंडियों में गेहूं, धान और मूंगफली की कीमतों में +6.8% की वृद्धि हुई है। लाइव नीलामी में फसल बेचने से अधिक लाभ होगा।";
-        } else {
-            botReply = "Namaste! Today's benchmark prices for Wheat, Paddy (Rice), and Groundnut (Peanut) in Gujarat mandis are up by +6.8%. Placing your crop in Live Auction now will maximize returns.";
+        if (!botReply) {
+            if (lang === 'gu') {
+                botReply = "નમસ્તે! આજે ગુજરાતની મંડીઓમાં ઘઉં, ડાંગર અને મગફળીના ભાવમાં +૬.૮% નો વધારો જોવા મળ્યો છે. લાઇવ હરાજીમાં પાક મુકવાથી વધુ નફો મળશે.";
+            } else if (lang === 'hi') {
+                botReply = "नमस्ते! आज गुजरात मंडियों में गेहूं, धान और मूंगफली की कीमतों में +6.8% की वृद्धि हुई है। लाइव नीलामी में फसल बेचने से अधिक लाभ होगा।";
+            } else {
+                botReply = "Namaste! Today's benchmark prices for Wheat, Paddy (Rice), and Groundnut (Peanut) in Gujarat mandis are up by +6.8%. Placing your crop in Live Auction now will maximize returns.";
+            }
         }
 
-        setTimeout(() => {
-            const botDiv = document.createElement('div');
-            botDiv.className = 'chat-bubble bot';
-            botDiv.innerHTML = `<strong>KrishiAI:</strong> ${botReply}`;
-            messagesContainer.appendChild(botDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }, 500);
+        const botDiv = document.createElement('div');
+        botDiv.className = 'chat-bubble bot';
+        botDiv.innerHTML = `<strong>KrishiAI:</strong> ${botReply}`;
+        messagesContainer.appendChild(botDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 };

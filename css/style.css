@@ -533,3 +533,92 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--accent-orange);
     box-shadow: 0 0 15px rgba(217, 108, 59, 0.4);
 }
+
+/* ==========================================================================
+   LIGHT MODE THEME OVERRIDES
+   ========================================================================== */
+body.light-mode {
+    --bg-dark-charcoal: #F5F7F4;
+    --bg-deep-evergreen: #E8F0EC;
+    --bg-forest-green: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F0F5F2;
+    --bg-glass: rgba(255, 255, 255, 0.94);
+
+    --text-ivory: #142820;
+    --text-muted: #4B6358;
+    --text-sage: #2C4A3E;
+
+    --border-subtle: rgba(18, 55, 42, 0.15);
+    --border-glow: rgba(214, 168, 79, 0.6);
+
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+    background-color: var(--bg-dark-charcoal);
+    color: var(--text-ivory);
+}
+
+body.light-mode .noise-overlay {
+    background: radial-gradient(circle at 50% 50%, rgba(232, 240, 236, 0.6) 0%, rgba(245, 247, 244, 0.95) 100%);
+}
+
+body.light-mode .glass-card,
+body.light-mode .crop-card,
+body.light-mode .modal-content,
+body.light-mode .sidebar-drawer {
+    background: #FFFFFF !important;
+    border-color: rgba(18, 55, 42, 0.15) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+    color: var(--text-ivory) !important;
+}
+
+body.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.94) !important;
+    border-bottom-color: rgba(18, 55, 42, 0.15) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.light-mode .nav-link {
+    color: #334A40 !important;
+}
+
+body.light-mode .nav-link.active,
+body.light-mode .nav-link:hover {
+    color: var(--accent-orange) !important;
+    background: rgba(217, 108, 59, 0.08) !important;
+}
+
+body.light-mode input,
+body.light-mode select,
+body.light-mode textarea {
+    background: #F0F5F2 !important;
+    color: #142820 !important;
+    border-color: rgba(18, 55, 42, 0.2) !important;
+}
+
+body.light-mode table th {
+    background: #E8F0EC !important;
+    color: #142820 !important;
+}
+
+body.light-mode table td {
+    border-bottom-color: rgba(18, 55, 42, 0.1) !important;
+}
+
+body.light-mode .crop-card-title,
+body.light-mode .section-title,
+body.light-mode h1, body.light-mode h2, body.light-mode h3, body.light-mode h4 {
+    color: #0E241B !important;
+}
+
+body.light-mode .stat-card,
+body.light-mode .price-box {
+    background: #F4F8F5 !important;
+    border-color: rgba(18, 55, 42, 0.12) !important;
+}
+
+body.light-mode .theme-toggle-btn {
+    background: #E8F0EC !important;
+    color: #142820 !important;
+    border: 1px solid rgba(18, 55, 42, 0.2) !important;
+}
+
