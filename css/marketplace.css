@@ -1,0 +1,346 @@
+/* ==========================================================================
+   THE MIDDLEMAN KILLER - Buyer Marketplace, Live Auction & Crop Cards
+   ========================================================================== */
+
+/* Marketplace Filters & Search Bar */
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 30px;
+    background: rgba(18, 55, 42, 0.4);
+    padding: 16px 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    flex-wrap: wrap;
+}
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(16, 20, 17, 0.6);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 10px 16px;
+    flex: 1;
+    min-width: 260px;
+}
+
+.search-input-group input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-ivory);
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+.filter-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-pill {
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.filter-pill:hover, .filter-pill.active {
+    background: var(--accent-orange);
+    color: var(--text-ivory);
+    border-color: var(--accent-orange);
+}
+
+/* Crop Grid */
+.crop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
+}
+
+/* Crop Card */
+.crop-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.crop-card:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.crop-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    position: relative;
+}
+
+.crop-card-badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+}
+
+.crop-quality-tag {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(11, 33, 25, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.crop-card-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.crop-card-title {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+.crop-farmer-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
+.crop-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: auto;
+}
+
+.price-box label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.price-box .val {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent-gold);
+}
+
+/* Live Auction Spotlight Component */
+.auction-hero-box {
+    background: linear-gradient(135deg, rgba(18, 55, 42, 0.9) 0%, rgba(11, 33, 25, 0.95) 100%);
+    border: 1px solid var(--accent-orange);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    box-shadow: 0 0 40px rgba(217, 108, 59, 0.2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.auction-timer-display {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.timer-unit {
+    background: rgba(16, 20, 17, 0.8);
+    border: 1px solid var(--accent-gold);
+    border-radius: var(--radius-md);
+    padding: 12px 18px;
+    text-align: center;
+    min-width: 70px;
+}
+
+.timer-unit .num {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--accent-orange);
+    font-family: var(--font-heading);
+}
+
+.timer-unit .lbl {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* Bids History Feed */
+.bids-stream-container {
+    background: rgba(16, 20, 17, 0.6);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.bid-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bid-item-row:last-child {
+    border-bottom: none;
+}
+
+.bid-buyer-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+.bid-amount-tag {
+    font-weight: 800;
+    color: var(--accent-gold);
+}
+
+/* MODAL ENGINE SYSTEM */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 11, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-smooth);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-box {
+    background: var(--bg-deep-evergreen);
+    border: 1px solid var(--accent-gold);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 620px;
+    padding: 32px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    position: relative;
+    transform: scale(0.95);
+    transition: var(--transition-smooth);
+}
+
+.modal-overlay.active .modal-box {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-ivory);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.modal-close-btn:hover {
+    background: var(--accent-orange);
+}
+
+/* Multi-Step Crop Wizard Form */
+.wizard-steps-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 16px;
+}
+
+.wizard-step-indicator {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.wizard-step-indicator.active {
+    color: var(--accent-orange);
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    background: rgba(16, 20, 17, 0.7);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-ivory);
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.form-control:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 15px rgba(214, 168, 79, 0.2);
+}

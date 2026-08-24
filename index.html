@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE MIDDLEMAN KILLER — Direct from Farm. Fair for Everyone.</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- External CDN Libraries -->
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Leaflet.js for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Internal Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/marketplace.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- i18n Dictionary Script -->
+    <script src="js/i18n.js"></script>
+</head>
+<body>
+
+    <!-- Particle Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="cursor-glow"></div>
+
+    <!-- Notification Toast Container -->
+    <div id="toastContainer" style="position: fixed; top: 70px; right: 30px; z-index: 10005; display: flex; flex-direction: column; gap: 10px;"></div>
+
+    <!-- DYNAMIC SLIDE-OUT SIDEBAR DRAWER -->
+    <div class="sidebar-drawer" id="sidebarDrawer">
+        <div>
+            <div class="sidebar-header">
+                <a href="#" class="nav-brand" onclick="MKApp.switchView('landingView')">
+                    <div class="brand-icon"><i data-lucide="sprout"></i></div>
+                    <div class="brand-title"><span data-i18n="brandTitle">THE MIDDLEMAN</span> <span data-i18n="brandSub" style="color:var(--accent-orange);">KILLER</span></div>
+                </a>
+                <button style="background:none; border:none; color:var(--text-ivory); cursor:pointer;" onclick="MKApp.closeSidebar()"><i data-lucide="x"></i></button>
+            </div>
+            
+            <div id="sidebarUserProfile" style="margin-bottom: 20px;"></div>
+            <ul class="sidebar-menu" id="sidebarMenuList"></ul>
+        </div>
+
+        <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border-subtle); padding-top: 12px;">
+            Agricultural AI Platform v2.4
+        </div>
+    </div>
+
+    <!-- TOP NAVIGATION BAR -->
+    <nav class="navbar">
+        <a href="#" class="nav-brand" onclick="MKApp.switchView('landingView')">
+            <div class="brand-icon"><i data-lucide="sprout"></i></div>
+            <div class="brand-title"><span data-i18n="brandTitle">THE MIDDLEMAN</span> <span data-i18n="brandSub" style="color:var(--accent-orange);">KILLER</span></div>
+        </a>
+        <ul class="nav-menu" id="publicNavMenu"></ul>
+        <div class="nav-actions" id="navActions"></div>
+    </nav>
+
+    <!-- LIVE MARKET TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker-label"><i data-lucide="trending-up"></i> <span data-i18n="tickerTitle">LIVE MANDI PULSE</span></div>
+        <div class="ticker-move" id="tickerMove"></div>
+    </div>
+
+    <!-- ==========================================================================
+         VIEW 1: LANDING PAGE & HERO
+         ========================================================================== -->
+    <main id="landingView" class="view-section">
+        <!-- Hero Section -->
+        <section class="section-wrapper" id="heroSection" style="padding-top: 50px;">
+            <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center;">
+                <div>
+                    <span class="badge badge-gold mb-3"><i data-lucide="sparkles"></i> <span data-i18n="heroBadge">AI-POWERED DIRECT AGRICULTURAL MARKETPLACE</span></span>
+                    <h1 style="font-size: 3.8rem; margin: 16px 0; letter-spacing: -1px;">
+                        <span data-i18n="heroTitle1">KILL THE MIDDLEMAN.</span><br>
+                        <span class="gradient-text-gold" data-i18n="heroTitle2">EMPOWER THE FARMER.</span>
+                    </h1>
+                    <p class="section-subtitle" style="font-size: 1.2rem; margin-bottom: 30px;" data-i18n="heroSubtitle">
+                        Direct from Farm. Fair for Everyone. Connect directly with verified corporate buyers through AI crop grading, algorithmic fair price radar, real-time auctions, and geo-fenced escrow payments.
+                    </p>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="MKApp.switchView('farmerDashboardView')">
+                            <i data-lucide="sprout"></i> <span data-i18n="navSellDirect">START SELLING DIRECTLY</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="MKApp.switchView('marketplaceView')">
+                            <i data-lucide="shopping-cart"></i> <span data-i18n="navExploreMarket">EXPLORE MARKETPLACE</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Floating Cards Visual -->
+                <div style="position: relative; height: 440px; display: flex; align-items: center; justify-content: center;">
+                    <div class="glass-card float-card-1" style="position: absolute; top: 10px; left: 0; width: 220px;">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">AI FAIR PRICE</div>
+                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-gold);">₹2,835/Q</div>
+                        <div style="color: var(--accent-green-bright); font-weight: 700; font-size: 0.85rem;">↑ 8.4% Above Mandi</div>
+                    </div>
+
+                    <div class="glass-card float-card-2" style="position: absolute; top: 120px; right: -10px; width: 230px;">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">AI QUALITY SCAN</div>
+                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-orange);">94 / 100</div>
+                        <div style="color: var(--accent-gold); font-weight: 700; font-size: 0.85rem;">PREMIUM GRADE A+</div>
+                    </div>
+
+                    <div class="glass-card float-card-3" style="position: absolute; bottom: 30px; left: 20px; width: 240px;">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">LIVE AUCTION</div>
+                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-gold);">₹4,820/Q</div>
+                        <div style="color: var(--text-muted); font-size: 0.85rem;">27 Active Bids</div>
+                    </div>
+
+                    <div class="glass-card float-card-4" style="position: absolute; bottom: 10px; right: 10px; width: 210px;">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">VERIFIED BUYERS</div>
+                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-green-bright);">1,284</div>
+                        <div style="color: var(--text-muted); font-size: 0.85rem;">Corporate & Wholesalers</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Section: Intermediary Leakage -->
+        <section class="section-wrapper" style="background: rgba(11, 33, 25, 0.5); border-y: 1px solid var(--border-subtle);">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="problemTag">TRADITIONAL SUPPLY CHAIN VS MIDDLEMAN KILLER</span>
+                <h2 class="section-title" data-i18n="problemTitle">WHERE DOES THE FARMER'S MONEY GO?</h2>
+                <p class="section-subtitle" data-i18n="problemSubtitle">In the traditional agricultural chain, 5+ intermediaries drain up to 35% of the total crop value before reaching the end buyer.</p>
+            </div>
+
+            <div class="glass-card" style="padding: 40px; margin-bottom: 40px;">
+                <h3 style="margin-bottom: 24px; color: var(--accent-orange); text-align: center;" data-i18n="tradChainTitle">TRADITIONAL SUPPLY CHAIN (LEAKAGE)</h3>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; text-align: center;">
+                    <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; width: 130px;">
+                        <i data-lucide="user" style="color:var(--accent-gold);"></i>
+                        <div style="font-weight: 700; font-size: 0.85rem; margin-top: 6px;" data-i18n="farmer">FARMER</div>
+                        <div style="color: var(--accent-green-bright); font-weight: 800;">₹2,400</div>
+                    </div>
+                    <i data-lucide="arrow-right" style="color:var(--text-muted);"></i>
+                    <div style="background: rgba(231,76,60,0.15); padding: 14px; border-radius: 12px; width: 120px; border: 1px solid var(--accent-red-bright);">
+                        <div style="font-size: 0.75rem; color: var(--accent-red-bright);" data-i18n="trader">LOCAL TRADER</div>
+                        <div style="font-size: 0.8rem;">+₹180</div>
+                    </div>
+                    <i data-lucide="arrow-right" style="color:var(--text-muted);"></i>
+                    <div style="background: rgba(231,76,60,0.15); padding: 14px; border-radius: 12px; width: 120px; border: 1px solid var(--accent-red-bright);">
+                        <div style="font-size: 0.75rem; color: var(--accent-red-bright);" data-i18n="wholesaler">WHOLESALER</div>
+                        <div style="font-size: 0.8rem;">+₹240</div>
+                    </div>
+                    <i data-lucide="arrow-right" style="color:var(--text-muted);"></i>
+                    <div style="background: rgba(231,76,60,0.15); padding: 14px; border-radius: 12px; width: 120px; border: 1px solid var(--accent-red-bright);">
+                        <div style="font-size: 0.75rem; color: var(--accent-red-bright);" data-i18n="distributor">DISTRIBUTOR</div>
+                        <div style="font-size: 0.8rem;">+₹210</div>
+                    </div>
+                    <i data-lucide="arrow-right" style="color:var(--text-muted);"></i>
+                    <div style="background: rgba(231,76,60,0.15); padding: 14px; border-radius: 12px; width: 120px; border: 1px solid var(--accent-red-bright);">
+                        <div style="font-size: 0.75rem; color: var(--accent-red-bright);" data-i18n="retailer">RETAILER</div>
+                        <div style="font-size: 0.8rem;">+₹170</div>
+                    </div>
+                    <i data-lucide="arrow-right" style="color:var(--text-muted);"></i>
+                    <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; width: 130px;">
+                        <i data-lucide="shopping-bag" style="color:var(--accent-orange);"></i>
+                        <div style="font-weight: 700; font-size: 0.85rem; margin-top: 6px;" data-i18n="buyer">BUYER</div>
+                        <div style="color: var(--accent-orange); font-weight: 800;">₹3,200</div>
+                    </div>
+                </div>
+                <div style="margin-top: 24px; text-align: center; font-weight: 700; color: var(--accent-red-bright); background: rgba(231,76,60,0.1); padding: 12px; border-radius: 8px;" data-i18n="leakageNotice">
+                    ⚠️ VALUE LEAKAGE TO MIDDLEMEN: ₹800 / QUINTAL (25% PROFIT DRAINED FROM FARMER)
+                </div>
+            </div>
+
+            <!-- Solution Pipeline -->
+            <div class="section-header" style="margin-top: 60px;">
+                <span class="section-tag">THE DIRECT FARM-TO-MARKET ECOSYSTEM</span>
+                <h2 class="section-title">FARMER → THE MIDDLEMAN KILLER → BUYER</h2>
+            </div>
+            <div class="pipeline-container">
+                <div class="pipeline-node active">
+                    <div class="pipeline-node-icon"><i data-lucide="sprout"></i></div>
+                    <div class="pipeline-node-title" data-i18n="nodeFarm">🌱 FARM</div>
+                </div>
+                <div class="pipeline-connector active"><div class="pipeline-connector-glow"></div></div>
+                <div class="pipeline-node active">
+                    <div class="pipeline-node-icon"><i data-lucide="cpu"></i></div>
+                    <div class="pipeline-node-title" data-i18n="nodeAiQuality">🤖 AI QUALITY</div>
+                </div>
+                <div class="pipeline-connector active"><div class="pipeline-connector-glow"></div></div>
+                <div class="pipeline-node active">
+                    <div class="pipeline-node-icon"><i data-lucide="radar"></i></div>
+                    <div class="pipeline-node-title" data-i18n="nodeFairPrice">💰 FAIR PRICE</div>
+                </div>
+                <div class="pipeline-connector active"><div class="pipeline-connector-glow"></div></div>
+                <div class="pipeline-node active">
+                    <div class="pipeline-node-icon"><i data-lucide="zap"></i></div>
+                    <div class="pipeline-node-title" data-i18n="nodeAuction">🔴 AUCTION</div>
+                </div>
+                <div class="pipeline-connector active"><div class="pipeline-connector-glow"></div></div>
+                <div class="pipeline-node active">
+                    <div class="pipeline-node-icon"><i data-lucide="handshake"></i></div>
+                    <div class="pipeline-node-title" data-i18n="nodeBuyer">🤝 BUYER</div>
+                </div>
+                <div class="pipeline-connector active"><div class="pipeline-connector-glow"></div></div>
+                <div class="pipeline-node active">
+                    <div class="pipeline-node-icon"><i data-lucide="lock"></i></div>
+                    <div class="pipeline-node-title" data-i18n="nodeEscrow">🔐 ESCROW</div>
+                </div>
+                <div class="pipeline-connector active"><div class="pipeline-connector-glow"></div></div>
+                <div class="pipeline-node active">
+                    <div class="pipeline-node-icon"><i data-lucide="truck"></i></div>
+                    <div class="pipeline-node-title" data-i18n="nodeLogistics">🚚 LOGISTICS</div>
+                </div>
+                <div class="pipeline-connector active"><div class="pipeline-connector-glow"></div></div>
+                <div class="pipeline-node active">
+                    <div class="pipeline-node-icon"><i data-lucide="check-circle-2"></i></div>
+                    <div class="pipeline-node-title" data-i18n="nodeDelivery">🏠 DELIVERY</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================================================
+         VIEW 2: FARMER DASHBOARD & PORTAL
+         ========================================================================== -->
+    <main id="farmerDashboardView" class="view-section" style="display: none;">
+        <div class="section-wrapper">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;">
+                <div>
+                    <span class="badge badge-gold mb-2"><i data-lucide="check-circle"></i> VERIFIED FARMER PROFILE</span>
+                    <h2 style="font-size: 2.2rem;" data-i18n="farmerGreeting">Good Morning, Rajesh Patel 👋</h2>
+                    <p style="color: var(--text-muted);" data-i18n="farmerSubhead">Your farm in Anand, Gujarat is currently performing +14% above regional benchmark.</p>
+                </div>
+                <button class="btn btn-primary" onclick="MKApp.openModal('cropRegModal')">
+                    <i data-lucide="plus-circle"></i> <span data-i18n="btnRegisterCrop">REGISTER NEW CROP</span>
+                </button>
+            </div>
+
+            <!-- Farmer Animated Metrics -->
+            <div class="dashboard-grid">
+                <div class="col-3">
+                    <div class="glass-card stat-card">
+                        <div class="stat-info">
+                            <span class="stat-label" data-i18n="statTotalCrops">Total Crops Registered</span>
+                            <span class="stat-value">24</span>
+                            <span class="stat-sub">Across 12.5 Acres</span>
+                        </div>
+                        <div class="stat-icon-wrapper"><i data-lucide="sprout"></i></div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="glass-card stat-card">
+                        <div class="stat-info">
+                            <span class="stat-label" data-i18n="statActiveListings">Active Listings</span>
+                            <span class="stat-value">8</span>
+                            <span class="stat-sub">3 In Live Auction</span>
+                        </div>
+                        <div class="stat-icon-wrapper"><i data-lucide="list"></i></div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="glass-card stat-card">
+                        <div class="stat-info">
+                            <span class="stat-label" data-i18n="statCurrentEarnings">Current Earnings</span>
+                            <span class="stat-value" id="farmerEarningsVal">₹4.82L</span>
+                            <span class="stat-sub">+18% vs Last Month</span>
+                        </div>
+                        <div class="stat-icon-wrapper"><i data-lucide="indian-rupee"></i></div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="glass-card stat-card">
+                        <div class="stat-info">
+                            <span class="stat-label" data-i18n="statPendingEscrow">Pending Escrow</span>
+                            <span class="stat-value" style="color:var(--accent-gold);">₹82,400</span>
+                            <span class="stat-sub">In-Transit Shipment</span>
+                        </div>
+                        <div class="stat-icon-wrapper"><i data-lucide="lock"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Charts & Trust Meter Grid -->
+            <div class="dashboard-grid" style="margin-top: 30px;">
+                <div class="col-8">
+                    <div class="glass-card" style="height: 420px; display:flex; flex-direction:column;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="font-size: 1.2rem;"><i data-lucide="line-chart" style="color:var(--accent-gold);"></i> <span data-i18n="chartMarketTitle">Market Intelligence & Price Trend (Anand Mandi)</span></h3>
+                            <span class="badge badge-green">AI Algorithmic Forecast</span>
+                        </div>
+                        <div style="flex: 1; position: relative;">
+                            <canvas id="farmerMarketChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="glass-card" style="height: 420px; text-align: center;">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 16px;"><i data-lucide="shield-check" style="color:var(--accent-gold);"></i> <span data-i18n="trustScoreTitle">FARMER TRUST SCORE</span></h3>
+                        
+                        <div class="trust-score-meter">
+                            <svg class="trust-circle-svg" viewBox="0 0 140 140">
+                                <defs>
+                                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#D6A84F" />
+                                        <stop offset="100%" stop-color="#D96C3B" />
+                                    </linearGradient>
+                                </defs>
+                                <circle class="trust-circle-bg" cx="70" cy="70" r="60"></circle>
+                                <circle class="trust-circle-val" cx="70" cy="70" r="60"></circle>
+                            </svg>
+                            <div class="trust-score-number">
+                                <div class="num">94</div>
+                                <div class="lbl">TRUST SCORE</div>
+                            </div>
+                        </div>
+
+                        <div style="text-align: left; margin-top: 20px; font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px;">
+                            <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Identity (Aadhaar):</span><span style="color:var(--accent-green-bright); font-weight:700;">✓ Verified</span></div>
+                            <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Land Title (7/12 & 8A):</span><span style="color:var(--accent-green-bright); font-weight:700;">✓ Verified</span></div>
+                            <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Crop Quality AI Record:</span><span style="color:var(--accent-green-bright); font-weight:700;">✓ Certified</span></div>
+                            <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Escrow Delivery Rating:</span><span style="color:var(--accent-gold); font-weight:700;">4.9 ★★★★★</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather Intelligence & AI Alert -->
+            <div class="glass-card" style="margin-top: 30px; border-left: 4px solid var(--accent-orange); background: rgba(217, 108, 59, 0.08);">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <i data-lucide="cloud-lightning" style="width:36px; height:36px; color:var(--accent-orange);"></i>
+                        <div>
+                            <h4 style="color: var(--accent-orange); font-size: 1.1rem;" data-i18n="weatherAlertTitle">AI WEATHER HARVEST ALERT — Anand & Kheda District</h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n="weatherAlertText">Heavy rainfall (45mm+) predicted within 36 hours. Recommendation: Delay fresh harvesting by 12–18 hours to prevent grain moisture damage.</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="MKApp.toggleKrishiChat()" data-i18n="askKrishiAdvice">Ask KrishiAI Advice</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+         VIEW 3: SIGNATURE VISUAL #1 - AI FAIR PRICE RADAR
+         ========================================================================== -->
+    <main id="fairPriceRadarView" class="view-section" style="display: none;">
+        <div class="section-wrapper">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="radarTag">ALGORITHMIC PRICING INTELLIGENCE</span>
+                <h2 class="section-title" data-i18n="radarTitle">AI FAIR PRICE RADAR ENGINE</h2>
+                <p class="section-subtitle" data-i18n="radarSubtitle">Algorithmic price determination evaluating real-time Mandi rates, regional crop supply, local weather impact, soil grade, and corporate demand.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                <div class="glass-card" style="padding: 40px; text-align: center; position: relative;">
+                    <div class="radar-ring radar-ring-1"></div>
+                    <div class="radar-ring radar-ring-2"></div>
+                    <div class="radar-ring radar-ring-3"></div>
+                    <div class="radar-sweep"></div>
+                    <canvas id="radarCanvas"></canvas>
+                    
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">AI FAIR PRICE</div>
+                        <div style="font-size: 2.2rem; font-weight: 900; color: var(--accent-gold); font-family: var(--font-heading);">₹2,835/Q</div>
+                        <div style="font-size: 0.8rem; color: var(--accent-green-bright); font-weight: 700;">92% AI Confidence</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="glass-card">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                            <span style="color:var(--text-muted);" data-i18n="currentMandiRate">Current Traditional Mandi Rate:</span>
+                            <span style="font-weight:700;">₹2,760 / Quintal</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                            <span style="color:var(--text-muted);" data-i18n="aiFairBenchmark">AI Calculated Fair Benchmark:</span>
+                            <span style="font-weight:800; color:var(--accent-gold);">₹2,835 / Quintal</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between;">
+                            <span style="color:var(--text-muted);" data-i18n="expectedAuctionRange">Expected Auction Range:</span>
+                            <span style="font-weight:700; color:var(--accent-orange);">₹2,780 — ₹2,910 / Quintal</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card">
+                        <h4 style="margin-bottom: 12px; color:var(--accent-gold);"><i data-lucide="cpu"></i> Algorithmic Factors Breakdown</h4>
+                        <div style="display:flex; flex-direction:column; gap:10px; font-size:0.9rem;">
+                            <div style="display:flex; justify-content:space-between;">
+                                <span>1. Active Buyer Demand:</span>
+                                <span style="color:var(--accent-orange); font-weight:700;">High (+7.8%)</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between;">
+                                <span>2. Regional Supply Volume:</span>
+                                <span style="color:var(--accent-gold); font-weight:700;">Tight Supply</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between;">
+                                <span>3. AI Quality Index:</span>
+                                <span style="color:var(--accent-green-bright); font-weight:700;">94/100 (Grade A+)</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between;">
+                                <span>4. Historical Season Price:</span>
+                                <span style="color:var(--accent-gold); font-weight:700;">+14% 3-Yr High</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="MKApp.switchView('marketplaceView')">
+                        <i data-lucide="shopping-cart"></i> <span data-i18n="btnApplyFairPrice">Apply Fair Price to Marketplace</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+         VIEW 4: BUYER MARKETPLACE
+         ========================================================================== -->
+    <main id="marketplaceView" class="view-section" style="display: none;">
+        <div class="section-wrapper">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="marketTag">DIRECT AGRICULTURAL MARKETPLACE</span>
+                <h2 class="section-title" data-i18n="marketTitle">VERIFIED CROP LISTINGS</h2>
+                <p class="section-subtitle" data-i18n="marketSubtitle">Buy directly from certified farmers with AI quality reports, fair prices, and escrow safety.</p>
+            </div>
+
+            <div class="filter-bar">
+                <div class="search-input-group">
+                    <i data-lucide="search" style="color:var(--text-muted);"></i>
+                    <input type="text" placeholder="Search wheat, paddy, groundnut, location, farmer..." data-i18n-placeholder="searchPlaceholder" />
+                </div>
+                <div class="filter-pills">
+                    <button class="filter-pill active" onclick="MKApp.filterCategory('ALL', this)" data-i18n="filterAll">ALL</button>
+                    <button class="filter-pill" onclick="MKApp.filterCategory('Grains', this)">Grains</button>
+                    <button class="filter-pill" onclick="MKApp.filterCategory('Oilseeds', this)">Oilseeds</button>
+                    <button class="filter-pill" onclick="MKApp.filterCategory('Spices', this)">Spices</button>
+                </div>
+            </div>
+
+            <div class="crop-grid" id="cropGridContainer"></div>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+         VIEW 5: LIVE AUCTION MODULE
+         ========================================================================== -->
+    <main id="liveAuctionView" class="view-section" style="display: none;">
+        <div class="section-wrapper">
+            <div class="section-header">
+                <span class="badge badge-orange mb-2"><i data-lucide="zap"></i> <span data-i18n="auctionTag">REAL-TIME TRANSPARENT AUCTION</span></span>
+                <h2 class="section-title" data-i18n="auctionTitle">LIVE CROP AUCTION</h2>
+                <p class="section-subtitle" data-i18n="auctionSubtitle">Corporate buyers bidding transparently for premium quality verified crops.</p>
+            </div>
+
+            <div class="auction-hero-box">
+                <div>
+                    <span class="badge badge-gold mb-2" data-i18n="spotlightItem">SPOTLIGHT ITEM #AU-2849</span>
+                    <h2 style="font-size: 2.2rem; margin-bottom: 8px;">Paddy (Rice)</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 16px;"><i data-lucide="map-pin"></i> Rajesh Patel's Farm — Anand, Gujarat | 150 Quintals</p>
+                    
+                    <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                        <div>
+                            <small style="color:var(--text-muted); text-transform:uppercase;" data-i18n="startingPrice">Starting Price</small>
+                            <div style="font-size: 1.2rem; font-weight:700;">₹4,400/Q</div>
+                        </div>
+                        <div>
+                            <small style="color:var(--text-muted); text-transform:uppercase;" data-i18n="currentHighestBid">Current Highest Bid</small>
+                            <div style="font-size: 2rem; font-weight:900; color:var(--accent-orange);" id="liveAuctionPrice">₹4,820/Q</div>
+                        </div>
+                    </div>
+
+                    <small style="color:var(--text-muted); font-weight:700;" data-i18n="closingIn">AUCTION CLOSING IN:</small>
+                    <div class="auction-timer-display">
+                        <div class="timer-unit">
+                            <div class="num">00</div>
+                            <div class="lbl">HOURS</div>
+                        </div>
+                        <div style="font-size: 1.5rem; font-weight:900; color:var(--accent-gold);">:</div>
+                        <div class="timer-unit">
+                            <div class="num" id="auctionMin">02</div>
+                            <div class="lbl">MINUTES</div>
+                        </div>
+                        <div style="font-size: 1.5rem; font-weight:900; color:var(--accent-gold);">:</div>
+                        <div class="timer-unit">
+                            <div class="num" id="auctionSec">41</div>
+                            <div class="lbl">SECONDS</div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="MKApp.openModal('bidModal')">
+                        <i data-lucide="gavel"></i> <span data-i18n="btnPlaceBidNow">PLACE YOUR BID NOW</span>
+                    </button>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 14px; display:flex; justify-content:space-between;">
+                        <span><i data-lucide="activity" style="color:var(--accent-gold);"></i> <span data-i18n="liveBidActivity">LIVE BID ACTIVITY</span></span>
+                        <span style="font-size:0.8rem; color:var(--accent-green-bright);">● 27 Active Bidders</span>
+                    </h3>
+                    <div class="bids-stream-container" id="bidsStreamFeed"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+         VIEW 6: LOGISTICS & SHIPMENT TRACKING (RESTORED ORIGINAL LEAFLET MAP)
+         ========================================================================== -->
+    <main id="logisticsView" class="view-section" style="display: none;">
+        <div class="section-wrapper">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="logisticsTag">INTELLIGENT COLD-CHAIN LOGISTICS</span>
+                <h2 class="section-title" data-i18n="logisticsTitle">GUJARAT SHIPMENT TRACKING MAP</h2>
+                <p class="section-subtitle" data-i18n="logisticsSubtitle">Geo-fenced GPS route tracking across Gujarat hubs with temperature telemetry for guaranteed grain freshness.</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="col-8">
+                    <div class="glass-card" style="height: 480px; padding: 0; overflow: hidden; position: relative;">
+                        <div id="logisticsMap" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="glass-card" style="height: 480px; display:flex; flex-direction:column; justify-content:space-between;">
+                        <div>
+                            <span class="badge badge-green mb-2"><i data-lucide="navigation"></i> IN-TRANSIT TELEMETRY</span>
+                            <h3 style="font-size: 1.3rem; margin-bottom: 8px;">Shipment #TRK-8849-GJ</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">150 Qtl Paddy (Rice)</p>
+
+                            <div style="display:flex; flex-direction:column; gap:12px; font-size:0.9rem;">
+                                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);" data-i18n="vehicle">Vehicle:</span><span style="font-weight:700;">18-Ton Multi-Axle</span></div>
+                                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);" data-i18n="driver">Driver:</span><span style="font-weight:700;">Sukhdev Singh</span></div>
+                                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);" data-i18n="estimatedEta">Estimated ETA:</span><span style="color:var(--accent-gold); font-weight:800;">3 Hours 45 Mins</span></div>
+                                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);" data-i18n="storageTemp">Storage Temp:</span><span style="color:var(--accent-green-bright); font-weight:700;">22°C (Optimal)</span></div>
+                                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);" data-i18n="humidity">Humidity:</span><span style="font-weight:700;">48% Nominal</span></div>
+                            </div>
+                        </div>
+
+                        <div style="background: rgba(16, 20, 17, 0.6); padding: 14px; border-radius: 12px; border: 1px solid var(--border-subtle);">
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">GEO-FENCE STATUS</div>
+                            <div style="font-weight: 700; color: var(--accent-gold); font-size: 0.9rem;">En Route: Vadodara Express</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+         VIEW 7: ESCROW PAYMENT & TRUST SYSTEM
+         ========================================================================== -->
+    <main id="escrowPaymentView" class="view-section" style="display: none;">
+        <div class="section-wrapper">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="escrowTag">FINTECH ESCROW PROTECTION</span>
+                <h2 class="section-title" data-i18n="escrowTitle">SECURE SMART ESCROW VAULT</h2>
+                <p class="section-subtitle" data-i18n="escrowSubtitle">Funds are locked securely upon order placement and released automatically to the farmer upon verified geo-delivery.</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="glass-card" style="margin-bottom: 30px; text-align: center; border: 1px solid var(--accent-gold);">
+                    <span class="badge badge-gold mb-2">ESCROW TRANSACTION #ESC-2026-993812</span>
+                    <div style="font-size: 2.8rem; font-weight: 900; color: var(--accent-orange); font-family: var(--font-heading);">₹3,42,000</div>
+                    <div style="font-size: 1rem; color: var(--accent-green-bright); font-weight: 700;">PROTECTED & SECURED IN SMART VAULT</div>
+                </div>
+
+                <div class="escrow-flow-container">
+                    <div class="escrow-stage-card completed">
+                        <div class="escrow-stage-num">✓</div>
+                        <div style="flex:1;">
+                            <div style="font-weight:700; font-size:1rem;" data-i18n="step1PaymentLocked">Step 01: Buyer Payment Locked</div>
+                            <div style="font-size:0.85rem; color:var(--text-muted);">₹3,42,000 deposited by Adani Wilmar into Escrow Vault</div>
+                        </div>
+                        <span class="badge badge-green">Completed</span>
+                    </div>
+
+                    <div class="escrow-stage-card completed">
+                        <div class="escrow-stage-num">✓</div>
+                        <div style="flex:1;">
+                            <div style="font-weight:700; font-size:1rem;" data-i18n="step2QualityVerified">Step 02: AI Crop Quality Verified</div>
+                            <div style="font-size:0.85rem; color:var(--text-muted);">AI Quality Certificate #94 verified on-chain</div>
+                        </div>
+                        <span class="badge badge-green">Completed</span>
+                    </div>
+
+                    <div class="escrow-stage-card active">
+                        <div class="escrow-stage-num">03</div>
+                        <div style="flex:1;">
+                            <div style="font-weight:700; font-size:1rem;" data-i18n="step3GpsTelemetry">Step 03: In-Transit GPS Telemetry</div>
+                            <div style="font-size:0.85rem; color:var(--text-muted);">Shipment #TRK-8849-GJ currently 45 mins from Surat hub</div>
+                        </div>
+                        <span class="badge badge-orange">Active</span>
+                    </div>
+
+                    <div class="escrow-stage-card" id="escrowStage4">
+                        <div class="escrow-stage-num">04</div>
+                        <div style="flex:1;">
+                            <div style="font-weight:700; font-size:1rem;" data-i18n="step4FarmerPayout">Step 04: Instant Farmer Payout Release</div>
+                            <div style="font-size:0.85rem; color:var(--text-muted);">Direct instant transfer to Rajesh Patel SBI Account</div>
+                        </div>
+                        <button class="btn btn-gold" style="padding: 6px 14px; font-size:0.8rem;" onclick="MKDashboard.releaseEscrowFunds()">
+                            <span data-i18n="btnSimulateRelease">Simulate Delivery Release</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+         VIEW 8: ADMIN COMMAND CENTER & FRAUD RADAR
+         ========================================================================== -->
+    <main id="adminDashboardView" class="view-section" style="display: none;">
+        <div class="section-wrapper">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;">
+                <div>
+                    <span class="badge badge-orange mb-2"><i data-lucide="shield"></i> <span data-i18n="adminTag">SYSTEM COMMAND CENTER</span></span>
+                    <h2 style="font-size: 2.2rem;" data-i18n="adminTitle">ADMIN PLATFORM INTELLIGENCE</h2>
+                    <p style="color: var(--text-muted);" data-i18n="adminSubtitle">Real-time monitoring across Gujarat agricultural trade, platform volume & AI trust metrics.</p>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <span class="badge badge-green">Trust Engine: 99.8% Optimal</span>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="col-3">
+                    <div class="glass-card stat-card">
+                        <div class="stat-info">
+                            <span class="stat-label" data-i18n="statVerifiedFarmers">Total Verified Farmers</span>
+                            <span class="stat-value">18,420</span>
+                            <span class="stat-sub">+1,240 this month</span>
+                        </div>
+                        <div class="stat-icon-wrapper"><i data-lucide="users"></i></div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="glass-card stat-card">
+                        <div class="stat-info">
+                            <span class="stat-label" data-i18n="statVerifiedBuyers">Verified Buyers</span>
+                            <span class="stat-value">3,150</span>
+                            <span class="stat-sub">Adani, ITC, Reliance</span>
+                        </div>
+                        <div class="stat-icon-wrapper"><i data-lucide="building-2"></i></div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="glass-card stat-card">
+                        <div class="stat-info">
+                            <span class="stat-label" data-i18n="statTotalVolume">Total Direct Volume</span>
+                            <span class="stat-value">₹142.8 Cr</span>
+                            <span class="stat-sub">Zero Intermediary Leakage</span>
+                        </div>
+                        <div class="stat-icon-wrapper"><i data-lucide="trending-up"></i></div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="glass-card stat-card">
+                        <div class="stat-info">
+                            <span class="stat-label" data-i18n="statFraudScore">AI Fraud Risk Score</span>
+                            <span class="stat-value" style="color:var(--accent-green-bright);">LOW 4%</span>
+                            <span class="stat-sub">0 Flagged Transactions</span>
+                        </div>
+                        <div class="stat-icon-wrapper"><i data-lucide="shield-check"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card" style="margin-top: 30px;">
+                <h3 style="font-size: 1.2rem; margin-bottom: 16px;"><i data-lucide="map" style="color:var(--accent-gold);"></i> <span data-i18n="regionalTableTitle">Regional Trade & Fraud Monitor (Gujarat Hubs)</span></h3>
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--border-subtle); color: var(--text-muted);">
+                            <th style="padding: 12px;">REGIONAL DISTRICT</th>
+                            <th style="padding: 12px;">ACTIVE FARMERS</th>
+                            <th style="padding: 12px;">TRADE VOLUME</th>
+                            <th style="padding: 12px;">PRIMARY CROP</th>
+                            <th style="padding: 12px;">AI FRAUD RISK</th>
+                        </tr>
+                    </thead>
+                    <tbody id="regionalTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODALS -->
+    <div class="modal-overlay" id="cropRegModal">
+        <div class="modal-box" style="max-width: 680px;">
+            <button class="modal-close-btn" onclick="MKApp.closeModal('cropRegModal')"><i data-lucide="x"></i></button>
+            <h3 style="font-size: 1.4rem; margin-bottom: 6px;"><i data-lucide="sprout" style="color:var(--accent-gold);"></i> <span data-i18n="btnRegisterCrop">Register Crop for Direct Trade</span></h3>
+            
+            <div id="wizardStep1">
+                <div class="form-group">
+                    <label>Select Approved Crop (10 Supported)</label>
+                    <select class="form-control" id="regCropSelect">
+                        <option value="Cotton">Cotton</option>
+                        <option value="Groundnut (Peanut)">Groundnut (Peanut)</option>
+                        <option value="Cumin">Cumin</option>
+                        <option value="Bajara (Bajra / Pearl Millet)">Bajara (Bajra / Pearl Millet)</option>
+                        <option value="Wheat" selected>Wheat</option>
+                        <option value="Paddy (Rice)">Paddy (Rice)</option>
+                        <option value="Maize">Maize</option>
+                        <option value="Tobacco">Tobacco</option>
+                        <option value="Sesame">Sesame</option>
+                        <option value="Castor">Castor</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: PLACE BID MODAL -->
+    <div class="modal-overlay" id="bidModal">
+        <div class="modal-box">
+            <button class="modal-close-btn" onclick="MKApp.closeModal('bidModal')"><i data-lucide="x"></i></button>
+            <h3 style="font-size: 1.3rem; margin-bottom: 6px;"><i data-lucide="zap" style="color:var(--accent-orange);"></i> <span data-i18n="btnPlaceBid">Place Live Auction Bid</span></h3>
+            <div class="form-group">
+                <label>Your Bid Amount (₹ per Quintal)</label>
+                <input type="number" class="form-control" id="userBidInput" value="4840" step="10" />
+            </div>
+            <div style="display:flex; gap:10px; margin-top: 20px;">
+                <button class="btn btn-secondary" style="flex:1;" onclick="MKApp.closeModal('bidModal')" data-i18n="btnCancel">Cancel</button>
+                <button class="btn btn-primary" style="flex:1;" onclick="MKAuction.placeUserBid(parseInt(document.getElementById('userBidInput').value))">
+                    Submit Live Bid
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: AUTHENTICATION -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-box" style="max-width: 580px;">
+            <button class="modal-close-btn" onclick="MKApp.closeModal('authModal')"><i data-lucide="x"></i></button>
+            <div id="authLoginView">
+                <h3 style="font-size: 1.4rem; margin-bottom: 6px;" data-i18n="authSignIn">Sign In to Your Account</h3>
+                <div class="form-group">
+                    <label data-i18n="lblEmailOrMobile">Email Address or Mobile Number</label>
+                    <input type="text" class="form-control" id="loginIdentifier" placeholder="Enter email or mobile number" />
+                </div>
+                <div class="form-group">
+                    <label data-i18n="lblPassword">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" />
+                </div>
+                <button class="btn btn-primary" id="loginSubmitBtn" style="width: 100%;" onclick="MKApp.loginWithCredentials(document.getElementById('loginIdentifier').value, document.getElementById('loginPassword').value)">
+                    <span data-i18n="btnSignInSubmit">Sign In</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 4: LOGOUT -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal-box" style="max-width: 420px; text-align: center;">
+            <i data-lucide="log-out" style="width: 48px; height: 48px; color: var(--accent-orange); margin-bottom: 12px;"></i>
+            <h3 style="font-size: 1.4rem; margin-bottom: 8px;" data-i18n="logoutTitle">LOG OUT?</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;" data-i18n="logoutSub">Are you sure you want to end your session?</p>
+            <div style="display: flex; gap: 12px;">
+                <button class="btn btn-secondary" style="flex: 1;" onclick="MKApp.closeModal('logoutModal')" data-i18n="btnCancel">Cancel</button>
+                <button class="btn btn-primary" style="flex: 1;" onclick="MKApp.confirmLogout()" data-i18n="btnLogout">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- KRISHIAI WIDGET -->
+    <div class="krishi-ai-widget">
+        <button class="krishi-ai-btn" onclick="MKApp.toggleKrishiChat()">
+            <i data-lucide="bot" style="width:28px; height:28px;"></i>
+        </button>
+    </div>
+
+    <div class="krishi-chat-panel" id="krishiChatPanel">
+        <div class="krishi-chat-header">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <i data-lucide="bot" style="color:var(--accent-gold);"></i>
+                <div>
+                    <div style="font-weight:800; font-size:0.95rem;" data-i18n="krishiTitle">KrishiAI Assistant</div>
+                    <div style="font-size:0.7rem; color:var(--accent-green-bright);" data-i18n="krishiSub">● Active Voice & Text AI</div>
+                </div>
+            </div>
+            <button style="background:none; border:none; color:var(--text-ivory); cursor:pointer;" onclick="MKApp.toggleKrishiChat()"><i data-lucide="x"></i></button>
+        </div>
+        <div class="krishi-chat-messages" id="krishiChatMessages">
+            <div class="chat-bubble bot" data-i18n="krishiWelcome">
+                <strong>KrishiAI:</strong> Namaste Rajesh! I'm KrishiAI, your agricultural intelligence assistant. How can I help your farm today?
+            </div>
+        </div>
+        <div class="waveform-container">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+        </div>
+        <div style="padding: 12px; background: rgba(16,20,17,0.9); border-top: 1px solid var(--border-subtle); display: flex; gap: 8px;">
+            <input type="text" id="krishiInput" class="form-control" placeholder="Ask today's price, weather, auction advice..." data-i18n-placeholder="krishiPlaceholder" onkeypress="if(event.key==='Enter'){ MKAI.sendKrishiAiMessage(this.value); this.value=''; }" />
+            <button class="btn btn-primary" style="padding: 10px 14px;" onclick="const inp=document.getElementById('krishiInput'); MKAI.sendKrishiAiMessage(inp.value); inp.value='';">
+                <i data-lucide="send"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Application Script Files -->
+    <script src="js/mock-data.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/auction.js"></script>
+    <script src="js/logistics.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
