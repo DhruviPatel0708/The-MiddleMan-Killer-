@@ -1,7 +1,5 @@
 """
-======================================================================
 BUYER RELIABILITY MODEL COMPLETION VERIFICATION
-======================================================================
 
 Uses the existing Buyer model and existing buyers.csv.
 
@@ -13,7 +11,6 @@ No architecture changes.
 
 The required engineered buyer features are recreated from the
 existing buyer dataset.
-======================================================================
 """
 
 from pathlib import Path

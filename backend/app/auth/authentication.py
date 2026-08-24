@@ -1,6 +1,5 @@
 """
 AUTHENTICATION & AUTHORIZATION ENGINE
-=====================================
 
 Architecture components:
 1. User Login

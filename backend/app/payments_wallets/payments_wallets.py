@@ -1,6 +1,5 @@
 """
 PAYMENTS & WALLETS
-==================
 
 Architecture:
 

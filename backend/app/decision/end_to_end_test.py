@@ -1,7 +1,5 @@
 """
-======================================================================
 AGRICULTURE AI - END-TO-END DECISION TEST
-======================================================================
 
 Uses a REAL transaction row from transaction_features.csv.
 
@@ -23,7 +21,6 @@ IMPORTANT:
 - Uses actual quantity
 - Uses actual agreed price
 - Uses actual market price
-======================================================================
 """
 
 from pathlib import Path

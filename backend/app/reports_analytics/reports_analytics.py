@@ -1,6 +1,5 @@
 """
 REPORTS & ANALYTICS
-===================
 
 Architecture:
 

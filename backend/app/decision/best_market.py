@@ -1,7 +1,5 @@
 """
-======================================================================
 BEST MARKET RECOMMENDATION ENGINE
-======================================================================
 
 Memory-efficient version.
 
@@ -17,7 +15,6 @@ Uses:
 No model retraining.
 No fake predictions.
 No full dataset printing.
-======================================================================
 """
 
 from pathlib import Path

@@ -1,6 +1,5 @@
 """
 AUCTION & BIDDING
-=================
 
 Architecture:
 

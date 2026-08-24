@@ -1,7 +1,5 @@
 """
-======================================================================
 LOGISTICS MODEL COMPLETION VERIFICATION
-======================================================================
 
 Existing architecture only.
 Existing trained models only.
@@ -18,7 +16,6 @@ No:
     - dataset modification
     - fake predictions
     - architecture changes
-======================================================================
 """
 
 from pathlib import Path

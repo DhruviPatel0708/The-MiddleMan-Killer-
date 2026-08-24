@@ -1,7 +1,5 @@
 """
-======================================================================
 ALL AGRICULTURE AI MODELS - INTEGRATION TEST
-======================================================================
 
 Tests every saved ML model by:
 1. Loading the model
@@ -16,7 +14,6 @@ Tests every saved ML model by:
 This script DOES NOT retrain any model.
 It DOES NOT modify any dataset.
 It DOES NOT modify any saved model.
-======================================================================
 """
 
 from pathlib import Path

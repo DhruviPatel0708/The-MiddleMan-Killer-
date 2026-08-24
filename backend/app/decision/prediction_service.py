@@ -1,7 +1,5 @@
 """
-======================================================================
 AGRICULTURE AI - PREDICTION SERVICE
-======================================================================
 
 Purpose:
     Central inference layer for the 13 verified ML models.
@@ -27,7 +25,6 @@ Models:
     11. cost
     12. payment_risk
     13. delivery_risk
-======================================================================
 """
 
 from pathlib import Path

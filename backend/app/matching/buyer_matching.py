@@ -1,7 +1,5 @@
 """
-======================================================================
 BUYER MATCHING
-======================================================================
 
 Architecture:
     EXECUTION & MATCHING
@@ -17,7 +15,6 @@ Rules:
     - No new dataset
     - No AI Agent
     - No modification of existing data
-======================================================================
 """
 
 from pathlib import Path

@@ -1,6 +1,5 @@
 """
 DATABASE / STORAGE LAYER
-========================
 
 Database: SQLite
 

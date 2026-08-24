@@ -1,7 +1,5 @@
 """
-======================================================================
 RISK-ADJUSTED BEST MARKET ENGINE
-======================================================================
 
 Purpose:
     Select the best market after considering:
@@ -23,7 +21,6 @@ Existing trained models are used:
     - Delay Hours
     - Damage Percentage
 
-======================================================================
 """
 
 from pathlib import Path

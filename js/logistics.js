@@ -59,24 +59,131 @@ window.MKLogistics = {
                     transform: translate(-50%, -50%);
                 }
 
+                .mandi-dot-wrapper {
+                    cursor: pointer !important;
+                }
+
                 .mandi-hub-dot {
-                    width: 14px;
-                    height: 14px;
+                    width: 22px;
+                    height: 22px;
                     background: #2ECC71;
-                    border: 2px solid #FFFFFF;
+                    border: 3px solid #FFFFFF;
                     border-radius: 50%;
-                    box-shadow: 0 0 12px #2ECC71, 0 0 20px #2ECC71;
-                    transform: translate(-50%, -50%);
+                    box-shadow: 0 0 15px #2ECC71, 0 0 25px rgba(46, 204, 113, 0.9);
+                    cursor: pointer !important;
+                    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
+                    animation: mandiPulseGlow 2s infinite ease-in-out;
+                }
+
+                .mandi-dot-wrapper:hover .mandi-hub-dot {
+                    transform: scale(1.4);
+                    background: #D96C3B;
+                    border-color: #D6A84F;
+                    box-shadow: 0 0 25px #D96C3B, 0 0 35px #D6A84F;
+                }
+
+                @keyframes mandiPulseGlow {
+                    0% { box-shadow: 0 0 10px #2ECC71, 0 0 18px rgba(46, 204, 113, 0.6); }
+                    50% { box-shadow: 0 0 22px #2ECC71, 0 0 35px rgba(46, 204, 113, 0.95); }
+                    100% { box-shadow: 0 0 10px #2ECC71, 0 0 18px rgba(46, 204, 113, 0.6); }
                 }
 
                 .custom-truck-icon-inner {
                     background: #D96C3B;
-                    width: 22px;
-                    height: 22px;
+                    width: 24px;
+                    height: 24px;
                     border-radius: 50%;
                     border: 3px solid #FFFFFF;
                     box-shadow: 0 0 18px #D96C3B, 0 0 30px #D6A84F;
-                    transform: translate(-50%, -50%);
+                    cursor: pointer !important;
+                    animation: truckPulse 1.8s infinite ease-in-out;
+                }
+
+                @keyframes truckPulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.18); box-shadow: 0 0 25px #D96C3B, 0 0 40px #D6A84F; }
+                    100% { transform: scale(1); }
+                }
+
+                .leaflet-popup-content-wrapper {
+                    background: rgba(11, 33, 25, 0.95) !important;
+                    border: 1px solid #D6A84F !important;
+                    border-radius: 14px !important;
+                    color: #F8F6F0 !important;
+                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7) !important;
+                    backdrop-filter: blur(12px) !important;
+                }
+
+                .leaflet-popup-tip {
+                    background: #0B2119 !important;
+                }
+
+                body.light-mode .leaflet-popup-content-wrapper {
+                    background: #FFFFFF !important;
+                    border: 2px solid #D96C3B !important;
+                    color: #142820 !important;
+                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15) !important;
+                }
+
+                body.light-mode .leaflet-popup-tip {
+                    background: #FFFFFF !important;
+                }
+
+                .mandi-popup-card {
+                    padding: 8px 12px;
+                    min-width: 220px;
+                }
+
+                .mandi-badge {
+                    font-size: 0.7rem;
+                    font-weight: 800;
+                    color: #D6A84F;
+                    letter-spacing: 0.5px;
+                }
+
+                .mandi-popup-title {
+                    font-size: 1.1rem;
+                    font-weight: 900;
+                    margin: 4px 0 6px 0;
+                    color: #F8F6F0;
+                }
+
+                body.light-mode .mandi-popup-title {
+                    color: #142820 !important;
+                }
+
+                .mandi-popup-info {
+                    font-size: 0.85rem;
+                    color: #A3B8B0;
+                    margin-bottom: 8px;
+                }
+
+                body.light-mode .mandi-popup-info {
+                    color: #4B6358 !important;
+                }
+
+                .mandi-popup-stock {
+                    font-size: 0.85rem;
+                    margin-bottom: 14px;
+                    color: #2ECC71;
+                }
+
+                .mandi-filter-btn {
+                    width: 100%;
+                    padding: 8px 14px;
+                    background: #D96C3B;
+                    color: #FFFFFF;
+                    border: none;
+                    border-radius: 20px;
+                    font-size: 0.82rem;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+
+                .mandi-filter-btn:hover {
+                    background: #b55325;
+                    transform: translateY(-2px);
                 }
 
                 .map-controls-overlay {
@@ -201,26 +308,40 @@ window.MKLogistics = {
 
             // 4. GUJARAT MANDI HUBS MARKERS
             const gujaratMandis = [
-                { name: "Anand APMC", coords: [22.5645, 72.9289], info: "Tobacco, Paddy & Wheat Hub" },
-                { name: "Rajkot Mandi", coords: [22.3039, 70.8022], info: "Groundnut & Cotton Hub" },
-                { name: "Unjha Market Yard", coords: [23.8037, 72.3917], info: "Export Cumin & Spices Hub" },
-                { name: "Junagadh Yard", coords: [21.5222, 70.4579], info: "Groundnut & Sesame Hub" },
-                { name: "Surat Terminal", coords: [21.1702, 72.8311], info: "Paddy & Export Processing" },
-                { name: "Mehsana Hub", coords: [23.5880, 72.3693], info: "Castor & Cotton Hub" }
+                { name: "Anand APMC", coords: [22.5645, 72.9289], info: "Tobacco, Paddy & Wheat Hub", stock: "1,450 Quintals" },
+                { name: "Rajkot Mandi", coords: [22.3039, 70.8022], info: "Groundnut & Cotton Hub", stock: "2,180 Quintals" },
+                { name: "Unjha Market Yard", coords: [23.8037, 72.3917], info: "Export Cumin & Spices Hub", stock: "890 Quintals" },
+                { name: "Junagadh Yard", coords: [21.5222, 70.4579], info: "Groundnut & Sesame Hub", stock: "1,120 Quintals" },
+                { name: "Surat Terminal", coords: [21.1702, 72.8311], info: "Paddy & Export Processing", stock: "3,400 Quintals" },
+                { name: "Mehsana Hub", coords: [23.5880, 72.3693], info: "Castor & Cotton Hub", stock: "1,650 Quintals" }
             ];
 
             const mandiDotIcon = L.divIcon({
                 className: 'mandi-dot-wrapper',
-                html: `<div class="mandi-hub-dot"></div>`,
-                iconSize: [0, 0]
+                html: `<div class="mandi-hub-dot" title="Click to view Mandi hub details"></div>`,
+                iconSize: [26, 26],
+                iconAnchor: [13, 13]
             });
 
             gujaratMandis.forEach(mandi => {
-                const mandiMarker = L.marker(mandi.coords, { icon: mandiDotIcon }).addTo(this.map);
+                const mandiMarker = L.marker(mandi.coords, { icon: mandiDotIcon, title: mandi.name }).addTo(this.map);
+                
                 mandiMarker.bindTooltip(`<b>${mandi.name}</b><br><span style="color:#D6A84F;">${mandi.info}</span>`, {
                     direction: 'top',
-                    offset: [0, -10]
+                    offset: [0, -14]
                 });
+
+                mandiMarker.bindPopup(`
+                    <div class="mandi-popup-card">
+                        <span class="mandi-badge">📍 MANDI TRADING HUB</span>
+                        <h4 class="mandi-popup-title">${mandi.name}</h4>
+                        <p class="mandi-popup-info">${mandi.info}</p>
+                        <div class="mandi-popup-stock">📦 Live Stock: <strong>${mandi.stock}</strong></div>
+                        <button class="mandi-filter-btn" onclick="MKApp.filterByLocation('${mandi.name}')">
+                            🔍 Filter Marketplace Listings
+                        </button>
+                    </div>
+                `);
             });
 
             // 5. IN-TRANSIT TRUCK SHIPMENT ROUTE
@@ -240,12 +361,26 @@ window.MKLogistics = {
             // Custom Glowing Truck Icon
             const truckIcon = L.divIcon({
                 className: 'custom-truck-icon',
-                html: `<div class="custom-truck-icon-inner"></div>`,
-                iconSize: [0, 0]
+                html: `<div class="custom-truck-icon-inner" title="Click to view active truck telemetry"></div>`,
+                iconSize: [26, 26],
+                iconAnchor: [13, 13]
             });
 
             this.marker = L.marker([22.45, 73.05], { icon: truckIcon }).addTo(this.map);
-            this.marker.bindPopup("<b>TRK-8849-GJ</b><br>150 Qtl Paddy in Transit<br>Temp: 22°C (Nominal)").openPopup();
+            this.marker.bindPopup(`
+                <div class="mandi-popup-card">
+                    <span class="mandi-badge" style="color:#2ECC71;">🚚 LIVE GPS SHIPMENT TELEMETRY</span>
+                    <h4 class="mandi-popup-title">TRK-8849-GJ</h4>
+                    <p class="mandi-popup-info">150 Quintal Paddy (Rice) in Transit</p>
+                    <div style="font-size:0.82rem; margin-bottom:10px; color:var(--text-ivory);">
+                        🌡️ Temp: <strong style="color:#2ECC71;">22°C (Optimal)</strong><br>
+                        ⏱️ ETA: <strong style="color:#D6A84F;">3 Hours 45 Mins</strong>
+                    </div>
+                    <button class="mandi-filter-btn" onclick="MKApp.switchView('logisticsView')">
+                        🛰️ Track Live Cold-Chain
+                    </button>
+                </div>
+            `).openPopup();
 
             // 6. RENDER FLOATING CONTROL BAR ON MAP
             this.renderMapToggleOverlay();

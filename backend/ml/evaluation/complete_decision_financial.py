@@ -1,7 +1,5 @@
 """
-======================================================================
 DECISION INTELLIGENCE - NET PROFIT + SELL NOW VS WAIT VERIFICATION
-======================================================================
 
 Architecture-only verification.
 
@@ -18,7 +16,6 @@ No:
     - new dataset
     - new architecture component
     - AI agent
-======================================================================
 """
 
 from pathlib import Path

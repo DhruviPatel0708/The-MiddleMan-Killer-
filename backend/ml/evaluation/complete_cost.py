@@ -1,7 +1,5 @@
 """
-======================================================================
 COST ESTIMATION MODEL COMPLETION VERIFICATION
-======================================================================
 
 Existing architecture only.
 Existing trained model only.
@@ -11,7 +9,6 @@ No model retraining.
 No dataset modification.
 No fake predictions.
 No new architecture components.
-======================================================================
 """
 
 from pathlib import Path

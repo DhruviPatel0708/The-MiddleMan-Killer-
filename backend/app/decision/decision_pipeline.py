@@ -1,7 +1,5 @@
 """
-======================================================================
 AGRICULTURE AI - DECISION PIPELINE
-======================================================================
 
 Purpose:
     End-to-end inference pipeline connecting:
@@ -21,7 +19,6 @@ IMPORTANT:
     - Does not retrain models.
     - Does not modify datasets.
     - Does not generate fake ML predictions.
-======================================================================
 """
 
 from pathlib import Path

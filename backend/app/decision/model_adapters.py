@@ -1,7 +1,5 @@
 """
-======================================================================
 AGRICULTURE AI - MODEL ADAPTERS
-======================================================================
 
 Purpose:
     Prepare model-specific inputs for the 13 trained ML models.
@@ -13,7 +11,6 @@ Important:
     - Uses exact model feature schemas.
     - Recreates buyer engineered features required by buyer_model.joblib.
 
-======================================================================
 """
 
 from pathlib import Path

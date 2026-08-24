@@ -1,6 +1,5 @@
 """
 SUPPORT & TICKETS
-=================
 
 Architecture:
 

@@ -1,6 +1,5 @@
 """
 USER MANAGEMENT
-===============
 
 Backend / Application Layer
 

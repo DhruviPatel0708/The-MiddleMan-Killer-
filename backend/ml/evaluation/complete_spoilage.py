@@ -1,7 +1,5 @@
 """
-======================================================================
 SPOILAGE PREDICTION MODEL COMPLETION VERIFICATION
-======================================================================
 
 Existing architecture only.
 Existing trained models only.
@@ -17,7 +15,6 @@ No:
     - dataset modification
     - fake predictions
     - new architecture components
-======================================================================
 """
 
 from pathlib import Path

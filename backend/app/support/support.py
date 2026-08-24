@@ -1,6 +1,5 @@
 """
 SUPPORT MODULE
-============================================================
 
 Backend-only Support Module.
 

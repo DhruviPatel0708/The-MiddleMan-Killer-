@@ -1,7 +1,5 @@
 """
-======================================================================
 CONFIDENCE SCORE ENGINE
-======================================================================
 
 Purpose:
     Calculate confidence in the final agricultural recommendation
@@ -12,7 +10,6 @@ NO NEW ML MODEL
 NO FAKE PREDICTIONS
 
 Confidence is a decision-layer metric.
-======================================================================
 """
 
 from typing import Dict, Any

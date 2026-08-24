@@ -1,7 +1,5 @@
 """
-======================================================================
 FINAL AI RECOMMENDATION ENGINE
-======================================================================
 
 FINAL OUTPUT - ONLY:
 
@@ -46,7 +44,6 @@ Possible final decisions:
     SELL NOW
     SELL WITH CAUTION
     WAIT / REASSESS
-======================================================================
 """
 
 from pathlib import Path

@@ -131,7 +131,7 @@ window.MKData = {
             verified: true,
             isAuction: true,
             auctionEndTime: 161,
-            image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80",
+            image: "/assets/crops/paddy_rice.jpg",
             category: "Grains"
         },
         {
@@ -148,7 +148,7 @@ window.MKData = {
             harvestDate: "18 Aug 2026",
             verified: true,
             isAuction: false,
-            image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=800&q=80",
+            image: "/assets/crops/groundnut.jpg",
             category: "Oilseeds"
         },
         {
@@ -166,7 +166,7 @@ window.MKData = {
             verified: true,
             isAuction: true,
             auctionEndTime: 420,
-            image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80",
+            image: "/assets/crops/cotton.jpg",
             category: "Fiber"
         },
         {
@@ -184,7 +184,7 @@ window.MKData = {
             verified: true,
             isAuction: true,
             auctionEndTime: 890,
-            image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80",
+            image: "/assets/crops/cumin.jpg",
             category: "Spices"
         },
         {
@@ -201,7 +201,7 @@ window.MKData = {
             harvestDate: "20 Aug 2026",
             verified: true,
             isAuction: false,
-            image: "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=800&q=80",
+            image: "/assets/crops/bajra.jpg",
             category: "Millets"
         },
         {
@@ -218,7 +218,7 @@ window.MKData = {
             harvestDate: "05 Aug 2026",
             verified: true,
             isAuction: false,
-            image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80",
+            image: "/assets/crops/wheat.jpg",
             category: "Grains"
         },
         {
@@ -235,7 +235,7 @@ window.MKData = {
             harvestDate: "14 Aug 2026",
             verified: true,
             isAuction: false,
-            image: "https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=800&q=80",
+            image: "/assets/crops/maize.jpg",
             category: "Grains"
         },
         {
@@ -252,7 +252,7 @@ window.MKData = {
             harvestDate: "08 Aug 2026",
             verified: true,
             isAuction: false,
-            image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80",
+            image: "/assets/crops/tobacco.jpg",
             category: "Cash Crop"
         },
         {
@@ -270,7 +270,7 @@ window.MKData = {
             verified: true,
             isAuction: true,
             auctionEndTime: 600,
-            image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80",
+            image: "/assets/crops/sesame.jpg",
             category: "Oilseeds"
         },
         {
@@ -287,7 +287,7 @@ window.MKData = {
             harvestDate: "17 Aug 2026",
             verified: true,
             isAuction: false,
-            image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
+            image: "/assets/crops/castor.jpg",
             category: "Oilseeds"
         }
     ],

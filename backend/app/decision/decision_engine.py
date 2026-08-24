@@ -1,7 +1,5 @@
 """
-======================================================================
 AGRICULTURE AI - DECISION INTELLIGENCE ENGINE
-======================================================================
 
 FINAL UNIFIED DECISION ENGINE
 
@@ -19,7 +17,6 @@ IMPORTANT
 No ML model is trained here.
 No fake predictions are generated.
 Only existing trained models and prediction outputs are used.
-======================================================================
 """
 
 from pathlib import Path

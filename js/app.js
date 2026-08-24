@@ -15,6 +15,15 @@ window.MKApp = {
         this.renderMarketplace();
         this.renderRegionalTable();
 
+        // Attach real-time search bar listener
+        const searchInput = document.querySelector('.search-input-group input');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                this.renderMarketplace('ALL', query);
+            });
+        }
+
         // Apply saved language
         if (window.MKI18n) {
             window.MKI18n.setLanguage(window.MKI18n.currentLang);
@@ -451,58 +460,39 @@ window.MKApp = {
 
             sidebarMenu.innerHTML =
                 menuItems.map(m => `
-                    <li
-                        class="sidebar-item"
-                        onclick="${m.action === 'openCropModal'
-                        ? 'MKApp.openModal(\\'cropRegModal\\')'
-                                : m.action === 'toggleKrishi'
-                        ? 'MKApp.toggleKrishiChat()'
-                        : `MKApp.switchView('${m.id}')`
-                        } "
-            >
+                    <li class="sidebar-item" onclick="${
+                        m.action === 'openCropModal'
+                            ? "MKApp.openModal('cropRegModal')"
+                            : m.action === 'toggleKrishi'
+                            ? 'MKApp.toggleKrishiChat()'
+                            : `MKApp.switchView('${m.id}')`
+                    }">
                         <i data-lucide="${m.icon}"></i>
-                        <span>
-                            ${i18n ? i18n.getText(m.labelKey) : m.labelKey}
-                        </span>
-                    </li >
-            `).join('') +
-                `
-            < li
-        class="sidebar-item"
-        style = "color:var(--accent-red-bright); margin-top:20px;"
-        onclick = "MKApp.logoutUser()"
-            >
+                        <span>${i18n ? i18n.getText(m.labelKey) : m.labelKey}</span>
+                    </li>
+                `).join('') + `
+                    <li class="sidebar-item" style="color:var(--accent-red-bright); margin-top:20px;" onclick="MKApp.logoutUser()">
                         <i data-lucide="log-out"></i>
-                        <span>
-                            ${i18n ? i18n.getText('btnLogout') : 'Log Out Session'}
-                        </span>
-                    </li >
-            `;
+                        <span>${i18n ? i18n.getText('btnLogout') : 'Log Out Session'}</span>
+                    </li>
+                `;
         }
 
         if (userProfileArea && this.userSession) {
             userProfileArea.innerHTML = `
-            < div
-        style = "display:flex; align-items:center; gap:12px; background:rgba(18,55,42,0.6); padding:12px; border-radius:12px; border:1px solid var(--border-subtle);"
-            >
+                <div style="display:flex; align-items:center; gap:12px; background:rgba(18,55,42,0.6); padding:12px; border-radius:12px; border:1px solid var(--border-subtle);">
                     <div style="font-size:1.8rem;">
                         ${this.userSession.avatar || '🌱'}
                     </div>
-
                     <div>
-                        <div
-                            style="font-weight:800; font-size:0.95rem; color:var(--text-ivory);"
-                        >
+                        <div style="font-weight:800; font-size:0.95rem; color:var(--text-ivory);">
                             ${this.userSession.name}
                         </div>
-
-                        <div
-                            style="font-size:0.75rem; color:var(--accent-green-bright); font-weight:700;"
-                        >
+                        <div style="font-size:0.75rem; color:var(--accent-green-bright); font-weight:700;">
                             ${this.userSession.role.toUpperCase()} • Verified ✓
                         </div>
                     </div>
-                </div >
+                </div>
             `;
         }
 
@@ -531,24 +521,7 @@ window.MKApp = {
             : 'guest';
 
         if (viewId === 'trustScoreSection') {
-<<<<<<< HEAD
-            this.switchView('farmerDashboardView');
-
-            setTimeout(() => {
-                const el =
-                    document.getElementById('trustScoreSection');
-
-                if (el) {
-                    el.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            }, 150);
-
-            return;
-=======
             viewId = 'farmerTrustScoreView';
->>>>>>> 759632c (Fix chatbot light mode theme styles and add dedicated Farmer Trust Score view section)
         }
 
         if (
@@ -565,22 +538,8 @@ window.MKApp = {
             return;
         }
 
-<<<<<<< HEAD
-        if (
-            viewId === 'farmerDashboardView' &&
-            role !== 'farmer' &&
-            role !== 'admin'
-        ) {
-            this.notify(
-                'FARMER ACCESS REQUIRED',
-                'Please login with a Farmer account.',
-                'orange'
-            );
-
-=======
         if ((viewId === 'farmerDashboardView' || viewId === 'farmerTrustScoreView') && role !== 'farmer' && role !== 'admin') {
             this.notify('FARMER ACCESS REQUIRED', 'Please login with a Farmer account.', 'orange');
->>>>>>> 759632c (Fix chatbot light mode theme styles and add dedicated Farmer Trust Score view section)
             this.openModal('authModal');
             return;
         }
@@ -647,156 +606,117 @@ window.MKApp = {
         }
     },
 
-    renderMarketplace(filterCategory = 'ALL') {
-        const grid =
-            document.getElementById('cropGridContainer');
-
+    renderMarketplace(filterCategory = 'ALL', searchQuery = '') {
+        const grid = document.getElementById('cropGridContainer');
         if (!grid) return;
 
         let items = window.MKData.crops;
 
         if (filterCategory !== 'ALL') {
-            items = items.filter(
-                c => c.category === filterCategory
+            items = items.filter(c => c.category === filterCategory);
+        }
+
+        if (searchQuery) {
+            const q = searchQuery.toLowerCase().trim();
+            items = items.filter(c => 
+                c.title.toLowerCase().includes(q) ||
+                c.cropName.toLowerCase().includes(q) ||
+                c.location.toLowerCase().includes(q) ||
+                c.farmer.toLowerCase().includes(q) ||
+                c.category.toLowerCase().includes(q)
             );
         }
 
         const i18n = window.MKI18n;
 
+        if (items.length === 0) {
+            grid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: rgba(18, 55, 42, 0.3); border-radius: 16px; border: 1px dashed var(--border-subtle);">
+                    <div style="font-size: 2.5rem; margin-bottom: 10px;">🌾</div>
+                    <h4 style="font-size: 1.2rem; color: var(--text-ivory); margin-bottom: 6px;">No Crops Found Matching Your Search</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Try searching for a different crop name, location (e.g. Anand, Rajkot, Unjha), or reset filters.</p>
+                </div>
+            `;
+            return;
+        }
+
         grid.innerHTML = items.map(c => `
-            < div class="crop-card" >
+            <div class="crop-card">
                 <div style="position:relative;">
-                    <img
-                        src="${c.image}"
-                        class="crop-card-image"
-                        alt="${c.title}"
-                    />
-
+                    <img src="${c.image}" class="crop-card-image" alt="${c.title}" onerror="this.onerror=null;this.style='width:100%;height:200px;object-fit:cover;background:rgba(18,55,42,0.6);display:flex;align-items:center;justify-content:center;font-size:4rem;';this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%230B2119%22/><text x=%2250%25%22 y=%2255%25%22 font-size=%2280%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🌾</text></svg>'" />
                     <div class="crop-card-badges">
-                        ${
-                            c.verified
-                                ? `
-                                    <span class="badge badge-green">
-                                        <i data-lucide="check-circle"></i>
-                                        Verified
-                                    </span>
-                                `
-                                : ''
-                        }
-
-                        ${
-                            c.isAuction
-                                ? `
-                                    <span class="badge badge-orange">
-                                        <i data-lucide="zap"></i>
-                                        Live Auction
-                                    </span>
-                                `
-                                : ''
-                        }
+                        ${c.verified ? `
+                            <span class="badge badge-green">
+                                <i data-lucide="check-circle"></i> Verified
+                            </span>
+                        ` : ''}
+                        ${c.isAuction ? `
+                            <span class="badge badge-orange">
+                                <i data-lucide="zap"></i> Live Auction
+                            </span>
+                        ` : ''}
                     </div>
-
                     <div class="crop-quality-tag">
-                        <i data-lucide="award"></i>
-                        AI Quality ${c.qualityScore}/100
+                        <i data-lucide="award"></i> AI Quality ${c.qualityScore}/100
                     </div>
                 </div>
-
                 <div class="crop-card-body">
-                    <h3 class="crop-card-title">
-                        ${c.title}
-                    </h3>
-
+                    <h3 class="crop-card-title">${c.title}</h3>
                     <div class="crop-farmer-meta">
-                        <i data-lucide="map-pin"></i>
-                        ${c.farmer} (${c.location})
+                        <i data-lucide="map-pin"></i> ${c.farmer} (${c.location})
                     </div>
-
                     <div class="crop-price-row">
                         <div class="price-box">
                             <label>AI Fair Price</label>
-                            <div class="val">
-                                ${c.fairPrice}
-                            </div>
+                            <div class="val">${c.fairPrice}</div>
                         </div>
-
-                        <div
-                            class="price-box"
-                            style="text-align:right;"
-                        >
-                            <label>
-                                ${
-                                    c.isAuction
-                                        ? 'Current Bid'
-                                        : 'Direct Buy'
-                                }
-                            </label>
-
-                            <div
-                                class="val"
-                                style="color:var(--accent-orange);"
-                            >
-                                ${c.currentBid}
-                            </div>
+                        <div class="price-box" style="text-align:right;">
+                            <label>${c.isAuction ? 'Current Bid' : 'Direct Buy'}</label>
+                            <div class="val" style="color:var(--accent-orange);">${c.currentBid}</div>
                         </div>
                     </div>
-
-                    <div
-                        style="margin-top: 16px; display:flex; gap:10px;"
-                    >
-                        ${
-                            c.isAuction
-                                ? `
-                                    <button
-                                        class="btn btn-primary"
-                                        style="flex:1;"
-                                        onclick="MKApp.switchView('liveAuctionView')"
-                                    >
-                                        ${
-                                            i18n
-                                                ? i18n.getText('btnPlaceBid')
-                                                : 'Place Bid'
-                                        }
-                                    </button>
-                                `
-                                : `
-                                    <button
-                                        class="btn btn-gold"
-                                        style="flex:1;"
-                                        onclick="MKApp.buyCropDirect('${c.title}', '${c.currentBid}')"
-                                    >
-                                        ${
-                                            i18n
-                                                ? i18n.getText('btnBuyDirect')
-                                                : 'Buy Direct'
-                                        }
-                                    </button>
-                                `
-                        }
+                    <div style="margin-top: 16px; display:flex; gap:10px;">
+                        ${c.isAuction ? `
+                            <button class="btn btn-primary" style="flex:1;" onclick="MKApp.switchView('liveAuctionView')">
+                                ${i18n ? i18n.getText('btnPlaceBid') : 'Place Bid'}
+                            </button>
+                        ` : `
+                            <button class="btn btn-gold" style="flex:1;" onclick="MKApp.buyCropDirect('${c.title}', '${c.currentBid}')">
+                                ${i18n ? i18n.getText('btnBuyDirect') : 'Buy Direct'}
+                            </button>
+                        `}
                     </div>
                 </div>
-            </div >
-            `).join('');
+            </div>
+        `).join('');
 
         this.initLucide();
     },
 
     filterCategory(category, element) {
-        document
-            .querySelectorAll('.filter-pill')
-            .forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        if (element) element.classList.add('active');
 
-        if (element) {
-            element.classList.add('active');
+        const searchInput = document.querySelector('.search-input-group input');
+        const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        this.renderMarketplace(category, query);
+    },
+
+    filterByLocation(mandiName) {
+        this.switchView('marketplaceView');
+        const cityName = mandiName.split(' ')[0]; // e.g. "Anand", "Rajkot", "Unjha"
+        const searchInput = document.querySelector('.search-input-group input');
+        if (searchInput) {
+            searchInput.value = cityName;
         }
-
-        this.renderMarketplace(category);
+        this.renderMarketplace('ALL', cityName.toLowerCase());
+        this.notify('MAP FILTER APPLIED', `Filtered crops near ${mandiName}`, 'gold');
     },
 
     buyCropDirect(title, price) {
         this.notify(
             'ESCROW INITIATED',
-            `Locked ${ price } for ${ title }.Proceeding to shipment tracking...`,
+            `Locked ${price} for ${title}. Proceeding to shipment tracking...`,
             'gold'
         );
 
@@ -809,36 +729,15 @@ window.MKApp = {
 
         if (!tbody) return;
 
-        tbody.innerHTML =
-            window.MKData.regionalMapData.map(r => `
-    < tr >
-                    <td
-                        style="font-weight:700; color:var(--accent-gold);"
-                    >
-                        ${r.city}
-                    </td>
-
-                    <td>
-                        ${r.activeFarmers}
-                    </td>
-
-                    <td
-                        style="font-weight:700;"
-                    >
-                        ${r.tradeVolume}
-                    </td>
-
-                    <td>
-                        ${r.topCrop}
-                    </td>
-
-                    <td>
-                        <span class="risk-indicator risk-low">
-                            ${r.riskLevel}
-                        </span>
-                    </td>
-                </tr>
-    `).join('');
+        tbody.innerHTML = window.MKData.regionalMapData.map(r => `
+            <tr>
+                <td style="font-weight:700; color:var(--accent-gold);">${r.city}</td>
+                <td>${r.activeFarmers}</td>
+                <td style="font-weight:700;">${r.tradeVolume}</td>
+                <td>${r.topCrop}</td>
+                <td><span class="risk-indicator risk-low">${r.riskLevel}</span></td>
+            </tr>
+        `).join('');
     },
 
     openModal(modalId) {
@@ -869,55 +768,30 @@ window.MKApp = {
     },
 
     notify(title, message, type = 'orange') {
-        const container =
-            document.getElementById('toastContainer');
-
+        const container = document.getElementById('toastContainer');
         if (!container) return;
 
-        const toast =
-            document.createElement('div');
-
-        toast.className = `glass - card`;
-
+        const toast = document.createElement('div');
+        toast.className = 'glass-card';
         toast.style.cssText = `
-padding: 14px 20px;
-min - width: 300px;
-border - left: 4px solid ${
-    type === 'gold'
-        ? '#D6A84F'
-        : type === 'green'
-            ? '#2ECC71'
-            : '#D96C3B'
-};
-box - shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-animation: floatSlow 0.3s ease - out;
-`;
-
+            padding: 14px 20px;
+            min-width: 300px;
+            border-left: 4px solid ${
+                type === 'gold' ? '#D6A84F' : type === 'green' ? '#2ECC71' : '#D96C3B'
+            };
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            animation: floatSlow 0.3s ease-out;
+        `;
         toast.innerHTML = `
-    < div
-style = "font-weight:800; font-size:0.9rem; color:var(--text-ivory);"
-    >
-    ${ title }
-            </div >
-
-    <div
-        style="font-size:0.8rem; color:var(--text-muted);"
-    >
-        ${message}
-    </div>
-`;
-
+            <div style="font-weight:800; font-size:0.9rem; color:var(--text-ivory);">${title}</div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">${message}</div>
+        `;
         container.appendChild(toast);
 
         setTimeout(() => {
             toast.style.opacity = '0';
-            toast.style.transform =
-                'translateY(-10px)';
-
-            setTimeout(
-                () => toast.remove(),
-                300
-            );
+            toast.style.transform = 'translateY(-10px)';
+            setTimeout(() => toast.remove(), 300);
         }, 4000);
     }
 };

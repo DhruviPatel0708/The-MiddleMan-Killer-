@@ -305,3 +305,64 @@
 .risk-low { background: rgba(46, 204, 113, 0.2); color: var(--accent-green-bright); border: 1px solid var(--accent-green-bright); }
 .risk-medium { background: rgba(241, 196, 15, 0.2); color: #F1C40F; border: 1px solid #F1C40F; }
 .risk-high { background: rgba(231, 76, 60, 0.2); color: var(--accent-red-bright); border: 1px solid var(--accent-red-bright); }
+
+/* ==========================================================================
+   LIGHT MODE OVERRIDES FOR DASHBOARD & TRUST PORTAL
+   ========================================================================== */
+body.light-mode .escrow-flow-container {
+    background: #FFFFFF !important;
+    border: 1px solid rgba(18, 55, 42, 0.15) !important;
+}
+
+body.light-mode .escrow-stage-card {
+    background: #F8FAF9 !important;
+    border: 1px solid rgba(18, 55, 42, 0.12) !important;
+    color: #142820 !important;
+}
+
+body.light-mode .escrow-stage-num {
+    background: #E8F0EC !important;
+    color: #142820 !important;
+}
+
+body.light-mode [style*="background: linear-gradient(135deg, rgba(18,55,42"] {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F0F5F2 100%) !important;
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08) !important;
+    color: #142820 !important;
+}
+
+body.light-mode [style*="background: rgba(16, 20, 17"],
+body.light-mode [style*="background: rgba(16,20,17"],
+body.light-mode [style*="background: rgba(18,55,42"] {
+    background: #F4F8F5 !important;
+    border-color: rgba(18, 55, 42, 0.15) !important;
+    color: #142820 !important;
+}
+
+/* Dedicated Farmer Trust Score View Light Mode Overrides */
+body.light-mode #farmerTrustScoreView {
+    background: #F8FAF9 !important;
+}
+
+body.light-mode #farmerTrustScoreView .section-wrapper {
+    background: transparent !important;
+}
+
+body.light-mode #farmerTrustScoreView h2,
+body.light-mode #farmerTrustScoreView h3,
+body.light-mode #farmerTrustScoreView h4,
+body.light-mode #farmerTrustScoreView strong {
+    color: #0E241B !important;
+}
+
+body.light-mode #farmerTrustScoreView p {
+    color: #334A40 !important;
+}
+
+body.light-mode .trust-hero-card {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F4F8F5 100%) !important;
+    border: 2px solid var(--accent-gold) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08) !important;
+    color: #142820 !important;
+}

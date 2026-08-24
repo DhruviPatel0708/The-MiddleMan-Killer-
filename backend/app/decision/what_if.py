@@ -1,7 +1,5 @@
 """
-======================================================================
 WHAT-IF / SCENARIO ANALYSIS ENGINE
-======================================================================
 
 Purpose:
     Evaluate alternative agricultural selling scenarios using the
@@ -12,7 +10,6 @@ NO FAKE ML PREDICTIONS
 
 The engine modifies decision assumptions only and recalculates the
 financial/risk outcome.
-======================================================================
 """
 
 from dataclasses import dataclass

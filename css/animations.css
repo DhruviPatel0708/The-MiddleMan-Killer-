@@ -214,3 +214,60 @@
 .pulse-bid {
     animation: bidPulse 1s ease-out;
 }
+
+/* Dynamic Animated Headline Color-Changing Gradient */
+.gradient-text-gold,
+.animated-gradient-gold {
+    display: inline-block !important;
+    background: linear-gradient(
+        90deg,
+        #D6A84F 0%,
+        #FF7043 20%,
+        #2ECC71 40%,
+        #F1C40F 60%,
+        #E67E22 80%,
+        #D6A84F 100%
+    ) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: colorFlowMove 4s linear infinite, colorHueCycle 8s linear infinite !important;
+}
+
+.hero-title-main.animated-gradient-text {
+    display: inline-block !important;
+    background: linear-gradient(
+        90deg,
+        #FFFFFF 0%,
+        #2ECC71 30%,
+        #D6A84F 60%,
+        #FFFFFF 100%
+    ) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: colorFlowMove 6s linear infinite !important;
+}
+
+body.light-mode .hero-title-main.animated-gradient-text {
+    background: linear-gradient(
+        90deg,
+        #0E241B 0%,
+        #27AE60 30%,
+        #D96C3B 60%,
+        #0E241B 100%
+    ) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+@keyframes colorFlowMove {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes colorHueCycle {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}

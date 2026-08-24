@@ -1,6 +1,5 @@
 """
 NOTIFICATION & ALERT
-====================
 
 Architecture:
 

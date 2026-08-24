@@ -1,7 +1,5 @@
 """
-======================================================================
 PRICE + DEMAND MODEL COMPLETION VERIFICATION
-======================================================================
 
 Existing architecture only.
 Existing trained models only.
@@ -23,7 +21,6 @@ NO:
 - fake predictions
 - dataset modification
 - architecture changes
-======================================================================
 """
 
 from pathlib import Path

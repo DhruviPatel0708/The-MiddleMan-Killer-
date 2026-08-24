@@ -20,11 +20,11 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <!-- Internal Stylesheets -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/marketplace.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/style.css?v=4.0">
+    <link rel="stylesheet" href="css/animations.css?v=4.0">
+    <link rel="stylesheet" href="css/dashboard.css?v=4.0">
+    <link rel="stylesheet" href="css/marketplace.css?v=4.0">
+    <link rel="stylesheet" href="css/responsive.css?v=4.0">
 
     <!-- i18n Dictionary Script -->
     <script src="js/i18n.js"></script>
@@ -85,8 +85,8 @@
                 <div>
                     <span class="badge badge-gold mb-3"><i data-lucide="sparkles"></i> <span data-i18n="heroBadge">AI-POWERED DIRECT AGRICULTURAL MARKETPLACE</span></span>
                     <h1 style="font-size: 3.8rem; margin: 16px 0; letter-spacing: -1px;">
-                        <span data-i18n="heroTitle1">KILL THE MIDDLEMAN.</span><br>
-                        <span class="gradient-text-gold" data-i18n="heroTitle2">EMPOWER THE FARMER.</span>
+                        <span class="hero-title-main animated-gradient-text" data-i18n="heroTitle1">KILL THE MIDDLEMAN.</span><br>
+                        <span class="gradient-text-gold animated-gradient-gold" data-i18n="heroTitle2">EMPOWER THE FARMER.</span>
                     </h1>
                     <p class="section-subtitle" style="font-size: 1.2rem; margin-bottom: 30px;" data-i18n="heroSubtitle">
                         Direct from Farm. Fair for Everyone. Connect directly with verified corporate buyers through AI crop grading, algorithmic fair price radar, real-time auctions, and geo-fenced escrow payments.
@@ -131,7 +131,7 @@
         </section>
 
         <!-- Problem Section: Intermediary Leakage -->
-        <section class="section-wrapper" style="background: rgba(11, 33, 25, 0.5); border-y: 1px solid var(--border-subtle);">
+        <section class="section-wrapper problem-leakage-section">
             <div class="section-header">
                 <span class="section-tag" data-i18n="problemTag">TRADITIONAL SUPPLY CHAIN VS MIDDLEMAN KILLER</span>
                 <h2 class="section-title" data-i18n="problemTitle">WHERE DOES THE FARMER'S MONEY GO?</h2>
@@ -302,32 +302,38 @@
                 </div>
 
                 <div class="col-4" id="trustScoreSection">
-                    <div class="glass-card" style="height: 420px; text-align: center;">
-                        <h3 style="font-size: 1.1rem; margin-bottom: 16px;"><i data-lucide="shield-check" style="color:var(--accent-gold);"></i> <span data-i18n="trustScoreTitle">FARMER TRUST SCORE</span></h3>
-                        
-                        <div class="trust-score-meter">
-                            <svg class="trust-circle-svg" viewBox="0 0 140 140">
-                                <defs>
-                                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#D6A84F" />
-                                        <stop offset="100%" stop-color="#D96C3B" />
-                                    </linearGradient>
-                                </defs>
-                                <circle class="trust-circle-bg" cx="70" cy="70" r="60"></circle>
-                                <circle class="trust-circle-val" cx="70" cy="70" r="60"></circle>
-                            </svg>
-                            <div class="trust-score-number">
-                                <div class="num">94</div>
-                                <div class="lbl">TRUST SCORE</div>
+                    <div class="glass-card" style="height: 420px; text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3 style="font-size: 1.1rem; margin-bottom: 12px;"><i data-lucide="shield-check" style="color:var(--accent-gold);"></i> <span data-i18n="trustScoreTitle">FARMER TRUST SCORE</span></h3>
+                            
+                            <div class="trust-score-meter">
+                                <svg class="trust-circle-svg" viewBox="0 0 140 140">
+                                    <defs>
+                                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#D6A84F" />
+                                            <stop offset="100%" stop-color="#2ECC71" />
+                                        </linearGradient>
+                                    </defs>
+                                    <circle class="trust-circle-bg" cx="70" cy="70" r="60"></circle>
+                                    <circle class="trust-circle-val" cx="70" cy="70" r="60"></circle>
+                                </svg>
+                                <div class="trust-score-number">
+                                    <div class="num">94</div>
+                                    <div class="lbl">TRUST SCORE</div>
+                                </div>
+                            </div>
+
+                            <div style="text-align: left; margin-top: 10px; font-size: 0.82rem; display: flex; flex-direction: column; gap: 6px;">
+                                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Identity (Aadhaar):</span><span style="color:var(--accent-green-bright); font-weight:700;">✓ Verified</span></div>
+                                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Land Title (7/12 & 8A):</span><span style="color:var(--accent-green-bright); font-weight:700;">✓ Verified</span></div>
+                                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Crop Quality AI Record:</span><span style="color:var(--accent-green-bright); font-weight:700;">✓ Certified</span></div>
+                                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Escrow Delivery Rating:</span><span style="color:var(--accent-gold); font-weight:700;">4.9 ★★★★★</span></div>
                             </div>
                         </div>
 
-                        <div style="text-align: left; margin-top: 20px; font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px;">
-                            <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Identity (Aadhaar):</span><span style="color:var(--accent-green-bright); font-weight:700;">✓ Verified</span></div>
-                            <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Land Title (7/12 & 8A):</span><span style="color:var(--accent-green-bright); font-weight:700;">✓ Verified</span></div>
-                            <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Crop Quality AI Record:</span><span style="color:var(--accent-green-bright); font-weight:700;">✓ Certified</span></div>
-                            <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Escrow Delivery Rating:</span><span style="color:var(--accent-gold); font-weight:700;">4.9 ★★★★★</span></div>
-                        </div>
+                        <button class="btn btn-secondary" style="width: 100%; font-size: 0.8rem; padding: 10px 14px;" onclick="MKApp.switchView('farmerTrustScoreView')">
+                            <i data-lucide="external-link"></i> View Full Trust Score Page
+                        </button>
                     </div>
                 </div>
             </div>
@@ -353,125 +359,155 @@
          ========================================================================== -->
     <main id="farmerTrustScoreView" class="view-section" style="display: none;">
         <div class="section-wrapper">
-            <div class="section-header">
-                <span class="badge badge-green mb-2"><i data-lucide="shield-check"></i> VERIFIED FARMER CREDS</span>
-                <h2 class="section-title">FARMER TRUST & VERIFICATION PORTAL</h2>
-                <p class="section-subtitle">Comprehensive AI Trust Rating, Spectroscopic Quality Audit History, and Escrow Reliability Profile for Rajesh Patel.</p>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+                <div>
+                    <span class="badge badge-gold mb-2"><i data-lucide="shield-check"></i> ALGORITHMIC TRUST VERIFICATION</span>
+                    <h2 style="font-size: 2.2rem;">Farmer Trust Score & Credential Audit</h2>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Independent AI audit of Aadhaar KYC, 7/12 Land Registry, Spectroscopic Crop Grading, and Escrow Fulfillment.</p>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                    <button class="btn btn-gold" onclick="MKApp.notify('CERTIFICATE DOWNLOADED', 'Official AI Verified Farmer Certificate saved to your device.', 'green')">
+                        <i data-lucide="download"></i> Download Verified Certificate
+                    </button>
+                    <button class="btn btn-secondary" onclick="MKApp.notify('PROFILE COPIED', 'Public Verified Farmer Audit link copied to clipboard.', 'gold')">
+                        <i data-lucide="share-2"></i> Share Audit Link
+                    </button>
+                </div>
             </div>
 
             <!-- Trust Score Hero Card -->
-            <div class="glass-card mb-4" style="background: linear-gradient(135deg, rgba(18,55,42,0.95), rgba(11,33,25,0.95)); border: 2px solid var(--accent-gold); padding: 32px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
-                <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;">
-                    <div style="display:flex; align-items:center; gap:20px;">
-                        <div style="width:100px; height:100px; border-radius:50%; background:radial-gradient(circle, rgba(46,204,113,0.3) 0%, rgba(18,55,42,0.8) 100%); border:4px solid var(--accent-green-bright); display:flex; align-items:center; justify-content:center; flex-direction:column; box-shadow:0 0 25px rgba(46,204,113,0.5);">
-                            <span style="font-size:2.2rem; font-weight:900; color:var(--accent-green-bright); line-height:1;">94</span>
-                            <span style="font-size:0.65rem; color:var(--text-ivory); font-weight:700;">/ 100</span>
+            <div class="glass-card trust-hero-card mb-4" style="border: 2px solid var(--accent-gold); padding: 32px; border-radius: 20px;">
+                <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px;">
+                    <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+                        <div style="width:110px; height:110px; border-radius:50%; background:radial-gradient(circle, rgba(46,204,113,0.35) 0%, rgba(18,55,42,0.9) 100%); border:4px solid var(--accent-green-bright); display:flex; align-items:center; justify-content:center; flex-direction:column; box-shadow:0 0 30px rgba(46,204,113,0.4);">
+                            <span style="font-size:2.4rem; font-weight:900; color:var(--accent-green-bright); line-height:1;">94</span>
+                            <span style="font-size:0.7rem; color:var(--text-ivory); font-weight:700;">/ 100</span>
                         </div>
                         <div>
-                            <div style="display:flex; align-items:center; gap:8px;">
-                                <h3 style="font-size:1.8rem; font-weight:800; color:var(--text-ivory);">Rajesh Patel</h3>
-                                <span class="badge badge-green"><i data-lucide="check-circle"></i> KYC Level A+ Verified</span>
+                            <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                                <h3 style="font-size:1.9rem; font-weight:800;">Rajesh Patel</h3>
+                                <span class="badge badge-green"><i data-lucide="check-circle-2"></i> KYC Level A+ Verified</span>
+                                <span class="badge badge-gold"><i data-lucide="award"></i> Top 1% Verified Producer</span>
                             </div>
-                            <p style="color:var(--text-muted); font-size:0.95rem; margin-top:4px;">Anand Farm Cooperative • Anand, Gujarat | Member since 2024</p>
-                            <div style="display:flex; gap:16px; margin-top:12px; font-size:0.85rem;">
+                            <p style="color:var(--text-muted); font-size:0.95rem; margin-top:6px;">Anand Farm Cooperative • Anand, Gujarat | Member since 2024</p>
+                            <div style="display:flex; gap:20px; margin-top:14px; font-size:0.9rem; flex-wrap:wrap;">
                                 <span><strong style="color:var(--accent-gold);">24</strong> Direct Sales</span>
                                 <span>•</span>
                                 <span><strong style="color:var(--accent-green-bright);">100%</strong> On-Time Delivery</span>
                                 <span>•</span>
                                 <span><strong style="color:var(--accent-gold);">0</strong> Fraud Claims</span>
+                                <span>•</span>
+                                <span><strong style="color:#3498DB;">4.9 ★★★★★</strong> Buyer Rating</span>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <button class="btn btn-gold" onclick="MKApp.notify('CERTIFICATE DOWNLOADED', 'Official AI Verified Farmer Certificate saved.', 'green')">
-                            <i data-lucide="download"></i> Download Trust Certificate
-                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- 4 Pillar Breakdown Cards -->
-            <div class="dashboard-grid mb-4" style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
-                <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-green-bright);">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700;">AI QUALITY SCAN</span>
-                        <i data-lucide="award" style="color:var(--accent-green-bright);"></i>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-green-bright); padding: 22px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700; text-transform:uppercase;">AI Quality Scan</span>
+                        <i data-lucide="award" style="color:var(--accent-green-bright); width:24px; height:24px;"></i>
                     </div>
-                    <div style="font-size:1.8rem; font-weight:900; color:var(--accent-green-bright);">96 / 100</div>
-                    <small style="color:var(--text-muted); font-size:0.75rem;">Spectroscopic purity: 98.7% average over 24 batches</small>
+                    <div style="font-size:2rem; font-weight:900; color:var(--accent-green-bright);">96 / 100</div>
+                    <small style="color:var(--text-muted); font-size:0.8rem; display:block; margin-top:6px;">Spectroscopic purity: 98.7% average over 24 scanned batches</small>
                 </div>
 
-                <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-gold);">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700;">ESCROW RELIABILITY</span>
-                        <i data-lucide="lock" style="color:var(--accent-gold);"></i>
+                <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-gold); padding: 22px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700; text-transform:uppercase;">Escrow Reliability</span>
+                        <i data-lucide="lock" style="color:var(--accent-gold); width:24px; height:24px;"></i>
                     </div>
-                    <div style="font-size:1.8rem; font-weight:900; color:var(--accent-gold);">98 / 100</div>
-                    <small style="color:var(--text-muted); font-size:0.75rem;">Instant escrow payout release, zero payment disputes</small>
+                    <div style="font-size:2rem; font-weight:900; color:var(--accent-gold);">98 / 100</div>
+                    <small style="color:var(--text-muted); font-size:0.8rem; display:block; margin-top:6px;">Instant escrow payout release, zero payment disputes</small>
                 </div>
 
-                <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-orange);">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700;">GPS LAND VERIFIED</span>
-                        <i data-lucide="map-pin" style="color:var(--accent-orange);"></i>
+                <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-orange); padding: 22px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700; text-transform:uppercase;">GPS Land Verified</span>
+                        <i data-lucide="map-pin" style="color:var(--accent-orange); width:24px; height:24px;"></i>
                     </div>
-                    <div style="font-size:1.8rem; font-weight:900; color:var(--accent-orange);">92 / 100</div>
-                    <small style="color:var(--text-muted); font-size:0.75rem;">12.5 Acres geo-fenced satellite audit in Anand</small>
+                    <div style="font-size:2rem; font-weight:900; color:var(--accent-orange);">92 / 100</div>
+                    <small style="color:var(--text-muted); font-size:0.8rem; display:block; margin-top:6px;">12.5 Acres geo-fenced satellite land audit in Anand</small>
                 </div>
 
-                <div class="glass-card stat-card" style="border-left: 4px solid #3498DB;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700;">BUYER RATING</span>
-                        <i data-lucide="star" style="color:#3498DB;"></i>
+                <div class="glass-card stat-card" style="border-left: 4px solid #3498DB; padding: 22px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700; text-transform:uppercase;">Buyer Rating</span>
+                        <i data-lucide="star" style="color:#3498DB; width:24px; height:24px;"></i>
                     </div>
-                    <div style="font-size:1.8rem; font-weight:900; color:#3498DB;">4.9 / 5.0</div>
-                    <small style="color:var(--text-muted); font-size:0.75rem;">42 verified ratings from ITC, Adani & Patanjali buyers</small>
+                    <div style="font-size:2rem; font-weight:900; color:#3498DB;">4.9 / 5.0</div>
+                    <small style="color:var(--text-muted); font-size:0.8rem; display:block; margin-top:6px;">42 verified ratings from ITC, Adani & Patanjali buyers</small>
                 </div>
             </div>
 
             <!-- Detailed Quality & Audit Logs Table -->
-            <div class="glass-card">
-                <h3 style="font-size:1.2rem; margin-bottom:16px;"><i data-lucide="file-check-2" style="color:var(--accent-gold);"></i> Verified Quality & Batch Audit History</h3>
-                <table class="regional-table" style="width:100%;">
-                    <thead>
-                        <tr>
-                            <th>Crop Batch</th>
-                            <th>Harvest Date</th>
-                            <th>AI Quality Score</th>
-                            <th>Moisture</th>
-                            <th>Buyer</th>
-                            <th>Verification Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="font-weight:700; color:var(--accent-gold);">Paddy (Rice) - #AU-2849</td>
-                            <td>12 Aug 2026</td>
-                            <td><span class="badge badge-green">94 / 100 (Grade A+)</span></td>
-                            <td>8.2%</td>
-                            <td>Adani Wilmar Logistics</td>
-                            <td><span class="badge badge-green">✓ Verified Escrow Paid</span></td>
-                        </tr>
-                        <tr>
-                            <td style="font-weight:700; color:var(--accent-gold);">Golden Sharbati Wheat</td>
-                            <td>05 Aug 2026</td>
-                            <td><span class="badge badge-green">95 / 100 (Grade A+)</span></td>
-                            <td>7.8%</td>
-                            <td>ITC Foods Division</td>
-                            <td><span class="badge badge-green">✓ Verified Escrow Paid</span></td>
-                        </tr>
-                        <tr>
-                            <td style="font-weight:700; color:var(--accent-gold);">Commercial Leaf Tobacco</td>
-                            <td>08 Aug 2026</td>
-                            <td><span class="badge badge-gold">89 / 100 (Grade A)</span></td>
-                            <td>9.1%</td>
-                            <td>Gujarat State Coop</td>
-                            <td><span class="badge badge-green">✓ Verified Escrow Paid</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="glass-card" style="padding: 28px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+                    <h3 style="font-size:1.3rem;"><i data-lucide="file-check-2" style="color:var(--accent-gold);"></i> Verified Quality & Batch Audit History</h3>
+                    <span class="badge badge-green"><i data-lucide="shield-check"></i> Blockchain & AI Certified</span>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="regional-table" style="width:100%; min-width: 650px;">
+                        <thead>
+                            <tr>
+                                <th>Crop Batch ID</th>
+                                <th>Harvest Date</th>
+                                <th>AI Quality Score</th>
+                                <th>Moisture %</th>
+                                <th>Verified Buyer</th>
+                                <th>Verification Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Paddy (Rice) - #AU-2849</td>
+                                <td>12 Aug 2026</td>
+                                <td><span class="badge badge-green">94 / 100 (Grade A+)</span></td>
+                                <td>8.2%</td>
+                                <td>Adani Wilmar Logistics</td>
+                                <td><span class="badge badge-green">✓ Verified Escrow Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Golden Sharbati Wheat - #WH-1092</td>
+                                <td>05 Aug 2026</td>
+                                <td><span class="badge badge-green">95 / 100 (Grade A+)</span></td>
+                                <td>7.8%</td>
+                                <td>ITC Foods Division</td>
+                                <td><span class="badge badge-green">✓ Verified Escrow Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Commercial Leaf Tobacco - #TB-9921</td>
+                                <td>08 Aug 2026</td>
+                                <td><span class="badge badge-gold">89 / 100 (Grade A)</span></td>
+                                <td>9.1%</td>
+                                <td>Gujarat State Coop</td>
+                                <td><span class="badge badge-green">✓ Verified Escrow Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">High-Oil Groundnut - #GN-3301</td>
+                                <td>18 Aug 2026</td>
+                                <td><span class="badge badge-green">91 / 100 (Grade A)</span></td>
+                                <td>6.9%</td>
+                                <td>Shree Foods Pvt. Ltd.</td>
+                                <td><span class="badge badge-green">✓ Verified Escrow Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Export Cumin Seeds - #CM-4402</td>
+                                <td>10 Aug 2026</td>
+                                <td><span class="badge badge-green">98 / 100 (Export Grade)</span></td>
+                                <td>5.4%</td>
+                                <td>Reliance Agro Retail</td>
+                                <td><span class="badge badge-green">✓ Verified Escrow Paid</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+    </main>
     </main>
 
     <!-- ==========================================================================
@@ -559,8 +595,8 @@
 
             <div class="filter-bar">
                 <div class="search-input-group">
-                    <i data-lucide="search" style="color:var(--text-muted);"></i>
-                    <input type="text" placeholder="Search wheat, paddy, groundnut, location, farmer..." data-i18n-placeholder="searchPlaceholder" />
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search wheat, paddy, groundnut, location, farmer..." data-i18n-placeholder="searchPlaceholder" />
                 </div>
                 <div class="filter-pills">
                     <button class="filter-pill active" onclick="MKApp.filterCategory('ALL', this)" data-i18n="filterAll">ALL</button>
@@ -1167,15 +1203,15 @@
     </div>
 
     <!-- Application Script Files -->
-    <script src="js/mock-data.js"></script>
-    <script src="js/api-client.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/charts.js"></script>
-    <script src="js/ai.js"></script>
-    <script src="js/auction.js"></script>
-    <script src="js/logistics.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/mock-data.js?v=3.0"></script>
+    <script src="js/api-client.js?v=3.0"></script>
+    <script src="js/animations.js?v=3.0"></script>
+    <script src="js/charts.js?v=3.0"></script>
+    <script src="js/ai.js?v=3.0"></script>
+    <script src="js/auction.js?v=3.0"></script>
+    <script src="js/logistics.js?v=3.0"></script>
+    <script src="js/dashboard.js?v=3.0"></script>
+    <script src="js/app.js?v=3.0"></script>
 
 </body>
 </html>

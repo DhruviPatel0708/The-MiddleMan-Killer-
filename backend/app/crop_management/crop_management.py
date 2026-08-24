@@ -1,6 +1,5 @@
 """
 CROP MANAGEMENT
-===============
 
 Architecture:
 

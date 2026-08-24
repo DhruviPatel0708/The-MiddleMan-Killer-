@@ -1,6 +1,5 @@
 """
 IMPACT TRACKING MODULE
-============================================================
 
 Backend-only Impact Tracking Module.
 

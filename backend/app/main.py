@@ -43,6 +43,8 @@ if (PROJECT_ROOT / "js").exists():
     app.mount("/js", StaticFiles(directory=str(PROJECT_ROOT / "js")), name="js")
 if (PROJECT_ROOT / "data").exists():
     app.mount("/data", StaticFiles(directory=str(PROJECT_ROOT / "data")), name="data")
+if (PROJECT_ROOT / "assets").exists():
+    app.mount("/assets", StaticFiles(directory=str(PROJECT_ROOT / "assets")), name="assets")
 
 @app.get("/", response_class=FileResponse)
 def serve_index():
@@ -171,8 +173,8 @@ class LoginRequest(BaseModel):
 
 class CropCreateRequest(BaseModel):
     crop: str
-    farmer: str
-    location: str
+    farmer: Optional[str] = "Rajesh Patel"
+    location: Optional[str] = "Anand, Gujarat"
     quantity: str
     price: str
 

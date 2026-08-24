@@ -1,6 +1,5 @@
 """
 ORDER & TRANSACTION MANAGEMENT
-==============================
 
 Architecture:
 

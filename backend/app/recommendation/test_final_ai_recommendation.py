@@ -1,7 +1,5 @@
 """
-======================================================================
 FINAL AI RECOMMENDATION - VERIFICATION TEST
-======================================================================
 
 Verifies ONLY the Final AI Recommendation layer.
 
@@ -20,7 +18,6 @@ This test:
     - does not modify trained models
     - does not create fake ML predictions
     - does not add an architecture component
-======================================================================
 """
 
 from pathlib import Path

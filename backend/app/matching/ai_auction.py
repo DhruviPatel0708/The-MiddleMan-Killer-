@@ -1,7 +1,5 @@
 """
-======================================================================
 AI AUCTION
-======================================================================
 
 Architecture:
     EXECUTION & MATCHING
@@ -21,7 +19,6 @@ Does NOT:
     - Modify existing datasets
     - Add an AI Agent
     - Add unrelated architecture components
-======================================================================
 """
 
 from pathlib import Path
