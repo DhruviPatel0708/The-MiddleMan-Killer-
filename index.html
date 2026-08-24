@@ -349,6 +349,132 @@
     </main>
 
     <!-- ==========================================================================
+         VIEW 2B: FARMER TRUST SCORE PORTAL (DEDICATED STANDALONE VIEW)
+         ========================================================================== -->
+    <main id="farmerTrustScoreView" class="view-section" style="display: none;">
+        <div class="section-wrapper">
+            <div class="section-header">
+                <span class="badge badge-green mb-2"><i data-lucide="shield-check"></i> VERIFIED FARMER CREDS</span>
+                <h2 class="section-title">FARMER TRUST & VERIFICATION PORTAL</h2>
+                <p class="section-subtitle">Comprehensive AI Trust Rating, Spectroscopic Quality Audit History, and Escrow Reliability Profile for Rajesh Patel.</p>
+            </div>
+
+            <!-- Trust Score Hero Card -->
+            <div class="glass-card mb-4" style="background: linear-gradient(135deg, rgba(18,55,42,0.95), rgba(11,33,25,0.95)); border: 2px solid var(--accent-gold); padding: 32px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+                <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;">
+                    <div style="display:flex; align-items:center; gap:20px;">
+                        <div style="width:100px; height:100px; border-radius:50%; background:radial-gradient(circle, rgba(46,204,113,0.3) 0%, rgba(18,55,42,0.8) 100%); border:4px solid var(--accent-green-bright); display:flex; align-items:center; justify-content:center; flex-direction:column; box-shadow:0 0 25px rgba(46,204,113,0.5);">
+                            <span style="font-size:2.2rem; font-weight:900; color:var(--accent-green-bright); line-height:1;">94</span>
+                            <span style="font-size:0.65rem; color:var(--text-ivory); font-weight:700;">/ 100</span>
+                        </div>
+                        <div>
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <h3 style="font-size:1.8rem; font-weight:800; color:var(--text-ivory);">Rajesh Patel</h3>
+                                <span class="badge badge-green"><i data-lucide="check-circle"></i> KYC Level A+ Verified</span>
+                            </div>
+                            <p style="color:var(--text-muted); font-size:0.95rem; margin-top:4px;">Anand Farm Cooperative • Anand, Gujarat | Member since 2024</p>
+                            <div style="display:flex; gap:16px; margin-top:12px; font-size:0.85rem;">
+                                <span><strong style="color:var(--accent-gold);">24</strong> Direct Sales</span>
+                                <span>•</span>
+                                <span><strong style="color:var(--accent-green-bright);">100%</strong> On-Time Delivery</span>
+                                <span>•</span>
+                                <span><strong style="color:var(--accent-gold);">0</strong> Fraud Claims</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-gold" onclick="MKApp.notify('CERTIFICATE DOWNLOADED', 'Official AI Verified Farmer Certificate saved.', 'green')">
+                            <i data-lucide="download"></i> Download Trust Certificate
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Pillar Breakdown Cards -->
+            <div class="dashboard-grid mb-4" style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-green-bright);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700;">AI QUALITY SCAN</span>
+                        <i data-lucide="award" style="color:var(--accent-green-bright);"></i>
+                    </div>
+                    <div style="font-size:1.8rem; font-weight:900; color:var(--accent-green-bright);">96 / 100</div>
+                    <small style="color:var(--text-muted); font-size:0.75rem;">Spectroscopic purity: 98.7% average over 24 batches</small>
+                </div>
+
+                <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-gold);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700;">ESCROW RELIABILITY</span>
+                        <i data-lucide="lock" style="color:var(--accent-gold);"></i>
+                    </div>
+                    <div style="font-size:1.8rem; font-weight:900; color:var(--accent-gold);">98 / 100</div>
+                    <small style="color:var(--text-muted); font-size:0.75rem;">Instant escrow payout release, zero payment disputes</small>
+                </div>
+
+                <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-orange);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700;">GPS LAND VERIFIED</span>
+                        <i data-lucide="map-pin" style="color:var(--accent-orange);"></i>
+                    </div>
+                    <div style="font-size:1.8rem; font-weight:900; color:var(--accent-orange);">92 / 100</div>
+                    <small style="color:var(--text-muted); font-size:0.75rem;">12.5 Acres geo-fenced satellite audit in Anand</small>
+                </div>
+
+                <div class="glass-card stat-card" style="border-left: 4px solid #3498DB;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <span style="color:var(--text-muted); font-size:0.8rem; font-weight:700;">BUYER RATING</span>
+                        <i data-lucide="star" style="color:#3498DB;"></i>
+                    </div>
+                    <div style="font-size:1.8rem; font-weight:900; color:#3498DB;">4.9 / 5.0</div>
+                    <small style="color:var(--text-muted); font-size:0.75rem;">42 verified ratings from ITC, Adani & Patanjali buyers</small>
+                </div>
+            </div>
+
+            <!-- Detailed Quality & Audit Logs Table -->
+            <div class="glass-card">
+                <h3 style="font-size:1.2rem; margin-bottom:16px;"><i data-lucide="file-check-2" style="color:var(--accent-gold);"></i> Verified Quality & Batch Audit History</h3>
+                <table class="regional-table" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th>Crop Batch</th>
+                            <th>Harvest Date</th>
+                            <th>AI Quality Score</th>
+                            <th>Moisture</th>
+                            <th>Buyer</th>
+                            <th>Verification Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight:700; color:var(--accent-gold);">Paddy (Rice) - #AU-2849</td>
+                            <td>12 Aug 2026</td>
+                            <td><span class="badge badge-green">94 / 100 (Grade A+)</span></td>
+                            <td>8.2%</td>
+                            <td>Adani Wilmar Logistics</td>
+                            <td><span class="badge badge-green">✓ Verified Escrow Paid</span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:700; color:var(--accent-gold);">Golden Sharbati Wheat</td>
+                            <td>05 Aug 2026</td>
+                            <td><span class="badge badge-green">95 / 100 (Grade A+)</span></td>
+                            <td>7.8%</td>
+                            <td>ITC Foods Division</td>
+                            <td><span class="badge badge-green">✓ Verified Escrow Paid</span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:700; color:var(--accent-gold);">Commercial Leaf Tobacco</td>
+                            <td>08 Aug 2026</td>
+                            <td><span class="badge badge-gold">89 / 100 (Grade A)</span></td>
+                            <td>9.1%</td>
+                            <td>Gujarat State Coop</td>
+                            <td><span class="badge badge-green">✓ Verified Escrow Paid</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
          VIEW 3: SIGNATURE VISUAL #1 - AI FAIR PRICE RADAR
          ========================================================================== -->
     <main id="fairPriceRadarView" class="view-section" style="display: none;">
@@ -1032,7 +1158,7 @@
             <div class="wave-bar"></div>
             <div class="wave-bar"></div>
         </div>
-        <div style="padding: 12px; background: rgba(16,20,17,0.9); border-top: 1px solid var(--border-subtle); display: flex; gap: 8px;">
+        <div class="krishi-chat-footer" style="padding: 12px; border-top: 1px solid var(--border-subtle); display: flex; gap: 8px;">
             <input type="text" id="krishiInput" class="form-control" placeholder="Ask today's price, weather, auction advice..." data-i18n-placeholder="krishiPlaceholder" onkeypress="if(event.key==='Enter'){ MKAI.sendKrishiAiMessage(this.value); this.value=''; }" />
             <button class="btn btn-primary" style="padding: 10px 14px;" onclick="const inp=document.getElementById('krishiInput'); MKAI.sendKrishiAiMessage(inp.value); inp.value='';">
                 <i data-lucide="send"></i>

@@ -543,7 +543,7 @@ body.light-mode {
     --bg-forest-green: #FFFFFF;
     --bg-card: #FFFFFF;
     --bg-card-hover: #F0F5F2;
-    --bg-glass: rgba(255, 255, 255, 0.94);
+    --bg-glass: rgba(255, 255, 255, 0.95);
 
     --text-ivory: #142820;
     --text-muted: #4B6358;
@@ -572,7 +572,7 @@ body.light-mode .sidebar-drawer {
 }
 
 body.light-mode .navbar {
-    background: rgba(255, 255, 255, 0.94) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
     border-bottom-color: rgba(18, 55, 42, 0.15) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
 }
@@ -602,6 +602,7 @@ body.light-mode table th {
 
 body.light-mode table td {
     border-bottom-color: rgba(18, 55, 42, 0.1) !important;
+    color: #142820 !important;
 }
 
 body.light-mode .crop-card-title,
@@ -620,5 +621,82 @@ body.light-mode .theme-toggle-btn {
     background: #E8F0EC !important;
     color: #142820 !important;
     border: 1px solid rgba(18, 55, 42, 0.2) !important;
+}
+
+/* KRISHIAI CHATBOT LIGHT MODE OVERRIDES */
+body.light-mode .krishi-chat-panel {
+    background: #FFFFFF !important;
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.light-mode .krishi-chat-header {
+    background: #E8F0EC !important;
+    border-bottom-color: rgba(18, 55, 42, 0.15) !important;
+    color: #142820 !important;
+}
+
+body.light-mode .krishi-chat-header button {
+    color: #142820 !important;
+}
+
+body.light-mode .krishi-chat-messages {
+    background: #F8FAF9 !important;
+}
+
+body.light-mode .chat-bubble.bot {
+    background: #E2F0D9 !important;
+    border-color: rgba(46, 204, 113, 0.3) !important;
+    color: #142820 !important;
+}
+
+body.light-mode .chat-bubble.bot strong {
+    color: #0E241B !important;
+}
+
+body.light-mode .chat-bubble.user {
+    background: #D96C3B !important;
+    color: #FFFFFF !important;
+}
+
+body.light-mode .krishi-chat-footer {
+    background: #FFFFFF !important;
+    border-top-color: rgba(18, 55, 42, 0.15) !important;
+}
+
+body.light-mode .waveform-container {
+    background: #F0F5F2 !important;
+}
+
+/* TOP TICKER BAR LIGHT MODE */
+body.light-mode .ticker-bar,
+body.light-mode .top-ticker-bar {
+    background: #E8F0EC !important;
+    border-bottom-color: rgba(18, 55, 42, 0.15) !important;
+    color: #142820 !important;
+}
+
+body.light-mode .ticker-item span {
+    color: #142820 !important;
+}
+
+/* SIDEBAR DRAWER LIGHT MODE */
+body.light-mode .sidebar-drawer {
+    background: #FFFFFF !important;
+    border-left-color: rgba(18, 55, 42, 0.15) !important;
+}
+
+body.light-mode .sidebar-item {
+    color: #2C4A3E !important;
+}
+
+body.light-mode .sidebar-item:hover {
+    background: #F0F5F2 !important;
+    color: var(--accent-orange) !important;
+}
+
+body.light-mode .user-profile-badge {
+    background: #E8F0EC !important;
+    border-color: rgba(18, 55, 42, 0.15) !important;
 }
 

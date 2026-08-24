@@ -453,39 +453,38 @@ window.MKApp = {
                 menuItems.map(m => `
                     <li
                         class="sidebar-item"
-                        onclick="${
-                            m.action === 'openCropModal'
-                                ? 'MKApp.openModal(\\'cropRegModal\\')'
+                        onclick="${m.action === 'openCropModal'
+                        ? 'MKApp.openModal(\\'cropRegModal\\')'
                                 : m.action === 'toggleKrishi'
-                                    ? 'MKApp.toggleKrishiChat()'
-                                    : `MKApp.switchView('${m.id}')`
-                        }"
-                    >
+                        ? 'MKApp.toggleKrishiChat()'
+                        : `MKApp.switchView('${m.id}')`
+                        } "
+            >
                         <i data-lucide="${m.icon}"></i>
                         <span>
                             ${i18n ? i18n.getText(m.labelKey) : m.labelKey}
                         </span>
-                    </li>
-                `).join('') +
+                    </li >
+            `).join('') +
                 `
-                    <li
-                        class="sidebar-item"
-                        style="color:var(--accent-red-bright); margin-top:20px;"
-                        onclick="MKApp.logoutUser()"
-                    >
+            < li
+        class="sidebar-item"
+        style = "color:var(--accent-red-bright); margin-top:20px;"
+        onclick = "MKApp.logoutUser()"
+            >
                         <i data-lucide="log-out"></i>
                         <span>
                             ${i18n ? i18n.getText('btnLogout') : 'Log Out Session'}
                         </span>
-                    </li>
-                `;
+                    </li >
+            `;
         }
 
         if (userProfileArea && this.userSession) {
             userProfileArea.innerHTML = `
-                <div
-                    style="display:flex; align-items:center; gap:12px; background:rgba(18,55,42,0.6); padding:12px; border-radius:12px; border:1px solid var(--border-subtle);"
-                >
+            < div
+        style = "display:flex; align-items:center; gap:12px; background:rgba(18,55,42,0.6); padding:12px; border-radius:12px; border:1px solid var(--border-subtle);"
+            >
                     <div style="font-size:1.8rem;">
                         ${this.userSession.avatar || '🌱'}
                     </div>
@@ -503,7 +502,7 @@ window.MKApp = {
                             ${this.userSession.role.toUpperCase()} • Verified ✓
                         </div>
                     </div>
-                </div>
+                </div >
             `;
         }
 
@@ -532,6 +531,7 @@ window.MKApp = {
             : 'guest';
 
         if (viewId === 'trustScoreSection') {
+<<<<<<< HEAD
             this.switchView('farmerDashboardView');
 
             setTimeout(() => {
@@ -546,6 +546,9 @@ window.MKApp = {
             }, 150);
 
             return;
+=======
+            viewId = 'farmerTrustScoreView';
+>>>>>>> 759632c (Fix chatbot light mode theme styles and add dedicated Farmer Trust Score view section)
         }
 
         if (
@@ -562,6 +565,7 @@ window.MKApp = {
             return;
         }
 
+<<<<<<< HEAD
         if (
             viewId === 'farmerDashboardView' &&
             role !== 'farmer' &&
@@ -573,6 +577,10 @@ window.MKApp = {
                 'orange'
             );
 
+=======
+        if ((viewId === 'farmerDashboardView' || viewId === 'farmerTrustScoreView') && role !== 'farmer' && role !== 'admin') {
+            this.notify('FARMER ACCESS REQUIRED', 'Please login with a Farmer account.', 'orange');
+>>>>>>> 759632c (Fix chatbot light mode theme styles and add dedicated Farmer Trust Score view section)
             this.openModal('authModal');
             return;
         }
@@ -656,7 +664,7 @@ window.MKApp = {
         const i18n = window.MKI18n;
 
         grid.innerHTML = items.map(c => `
-            <div class="crop-card">
+            < div class="crop-card" >
                 <div style="position:relative;">
                     <img
                         src="${c.image}"
@@ -767,8 +775,8 @@ window.MKApp = {
                         }
                     </div>
                 </div>
-            </div>
-        `).join('');
+            </div >
+            `).join('');
 
         this.initLucide();
     },
@@ -788,7 +796,7 @@ window.MKApp = {
     buyCropDirect(title, price) {
         this.notify(
             'ESCROW INITIATED',
-            `Locked ${price} for ${title}. Proceeding to shipment tracking...`,
+            `Locked ${ price } for ${ title }.Proceeding to shipment tracking...`,
             'gold'
         );
 
@@ -803,7 +811,7 @@ window.MKApp = {
 
         tbody.innerHTML =
             window.MKData.regionalMapData.map(r => `
-                <tr>
+    < tr >
                     <td
                         style="font-weight:700; color:var(--accent-gold);"
                     >
@@ -830,7 +838,7 @@ window.MKApp = {
                         </span>
                     </td>
                 </tr>
-            `).join('');
+    `).join('');
     },
 
     openModal(modalId) {
@@ -869,35 +877,35 @@ window.MKApp = {
         const toast =
             document.createElement('div');
 
-        toast.className = `glass-card`;
+        toast.className = `glass - card`;
 
         toast.style.cssText = `
-            padding: 14px 20px;
-            min-width: 300px;
-            border-left: 4px solid ${
-                type === 'gold'
-                    ? '#D6A84F'
-                    : type === 'green'
-                        ? '#2ECC71'
-                        : '#D96C3B'
-            };
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            animation: floatSlow 0.3s ease-out;
-        `;
+padding: 14px 20px;
+min - width: 300px;
+border - left: 4px solid ${
+    type === 'gold'
+        ? '#D6A84F'
+        : type === 'green'
+            ? '#2ECC71'
+            : '#D96C3B'
+};
+box - shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+animation: floatSlow 0.3s ease - out;
+`;
 
         toast.innerHTML = `
-            <div
-                style="font-weight:800; font-size:0.9rem; color:var(--text-ivory);"
-            >
-                ${title}
-            </div>
+    < div
+style = "font-weight:800; font-size:0.9rem; color:var(--text-ivory);"
+    >
+    ${ title }
+            </div >
 
-            <div
-                style="font-size:0.8rem; color:var(--text-muted);"
-            >
-                ${message}
-            </div>
-        `;
+    <div
+        style="font-size:0.8rem; color:var(--text-muted);"
+    >
+        ${message}
+    </div>
+`;
 
         container.appendChild(toast);
 

@@ -64,7 +64,7 @@ window.MKData = {
             { id: "logisticsView", labelKey: "navLogistics", icon: "truck" },
             { id: "escrowPaymentView", labelKey: "escrowTag", icon: "lock" },
             { id: "krishiAiAction", labelKey: "krishiTitle", icon: "bot", action: "toggleKrishi" },
-            { id: "trustScoreSection", labelKey: "trustScoreTitle", icon: "shield-check" }
+            { id: "farmerTrustScoreView", labelKey: "navTrustScore", icon: "shield-check" }
         ],
         buyer: [
             { id: "marketplaceView", labelKey: "navMarketplace", icon: "shopping-bag" },
