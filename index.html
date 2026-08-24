@@ -301,7 +301,7 @@
                     </div>
                 </div>
 
-                <div class="col-4">
+                <div class="col-4" id="trustScoreSection">
                     <div class="glass-card" style="height: 420px; text-align: center;">
                         <h3 style="font-size: 1.1rem; margin-bottom: 16px;"><i data-lucide="shield-check" style="color:var(--accent-gold);"></i> <span data-i18n="trustScoreTitle">FARMER TRUST SCORE</span></h3>
                         
@@ -692,12 +692,24 @@
         </div>
     </main>
 
-    <!-- MODALS -->
+    <!-- MODAL 1: CROP REGISTRATION WIZARD (STRICT 10 CROPS ONLY) -->
     <div class="modal-overlay" id="cropRegModal">
         <div class="modal-box" style="max-width: 680px;">
             <button class="modal-close-btn" onclick="MKApp.closeModal('cropRegModal')"><i data-lucide="x"></i></button>
-            <h3 style="font-size: 1.4rem; margin-bottom: 6px;"><i data-lucide="sprout" style="color:var(--accent-gold);"></i> <span data-i18n="btnRegisterCrop">Register Crop for Direct Trade</span></h3>
             
+            <h3 style="font-size: 1.4rem; margin-bottom: 6px;"><i data-lucide="sprout" style="color:var(--accent-gold);"></i> <span data-i18n="btnRegisterCrop">Register Crop for Direct Trade</span></h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Complete the 7-step AI Quality & Fair Price evaluation wizard.</p>
+
+            <div class="wizard-steps-bar">
+                <span class="wizard-step-indicator active" id="stepInd1">1. Details</span>
+                <span class="wizard-step-indicator" id="stepInd2">2. Qty</span>
+                <span class="wizard-step-indicator" id="stepInd3">3. Location</span>
+                <span class="wizard-step-indicator" id="stepInd4">4. Image</span>
+                <span class="wizard-step-indicator" id="stepInd5">5. AI Quality</span>
+                <span class="wizard-step-indicator" id="stepInd6">6. Fair Price</span>
+                <span class="wizard-step-indicator" id="stepInd7">7. Publish</span>
+            </div>
+
             <div id="wizardStep1">
                 <div class="form-group">
                     <label>Select Approved Crop (10 Supported)</label>
@@ -714,6 +726,74 @@
                         <option value="Castor">Castor</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label>Listing Title</label>
+                    <input type="text" class="form-control" id="regCropTitle" value="Golden Sharbati Durum Wheat" />
+                </div>
+            </div>
+
+            <div id="wizardStep2" style="display: none;">
+                <div class="form-group">
+                    <label>Total Available Quantity (Quintals)</label>
+                    <input type="text" class="form-control" id="regCropQty" value="200 Quintals" />
+                </div>
+            </div>
+
+            <div id="wizardStep3" style="display: none;">
+                <div class="form-group">
+                    <label>Farm Location (Gujarat)</label>
+                    <input type="text" class="form-control" value="Anand, Gujarat" />
+                </div>
+            </div>
+
+            <div id="wizardStep4" style="display: none;">
+                <div class="form-group">
+                    <label>Upload High-Res Grain Photo</label>
+                    <div style="border: 2px dashed var(--border-subtle); padding: 30px; text-align: center; border-radius: 12px; background: rgba(16,20,17,0.5);">
+                        <i data-lucide="camera" style="width:40px; height:40px; color:var(--accent-gold); margin-bottom:10px;"></i>
+                        <div>Drag & Drop or Click to Select Grain Image</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="wizardStep5" style="display: none;">
+                <div class="scanner-container" style="height: 220px; display: flex; align-items: center; justify-content: center; background: #000;">
+                    <div class="scanner-line"></div>
+                    <div class="scanner-grid"></div>
+                    <div class="scan-point" style="top: 30%; left: 40%;"></div>
+                    <div class="scan-point" style="top: 60%; left: 70%;"></div>
+                    
+                    <div style="text-align: center; z-index: 12;">
+                        <i data-lucide="cpu" style="width:40px; height:40px; color:var(--accent-gold); margin-bottom:10px;"></i>
+                        <div id="scanStatusText" style="font-weight: 700;">Ready for AI Quality Inspection</div>
+                    </div>
+                </div>
+
+                <div id="scanResultBox" style="display: none; margin-top: 16px; background: rgba(46,204,113,0.1); padding: 14px; border-radius: 8px; border: 1px solid var(--accent-green-bright);">
+                    <div style="display:flex; justify-content:space-between; font-weight:700;">
+                        <span>AI QUALITY SCORE:</span>
+                        <span style="color:var(--accent-gold); font-size:1.2rem;" id="scanScoreDisplay">94/100</span>
+                    </div>
+                    <small style="color:var(--text-muted);">Defects: 3% | Moisture: 7.2% | Freshness: 96% | Grade: Premium A+</small>
+                </div>
+            </div>
+
+            <div id="wizardStep6" style="display: none;">
+                <div style="background: rgba(18,55,42,0.6); padding: 20px; border-radius: 12px; text-align: center;">
+                    <small style="color:var(--text-muted);">CALCULATED AI FAIR PRICE</small>
+                    <div style="font-size: 2.4rem; font-weight: 900; color: var(--accent-gold);">₹2,835 / Q</div>
+                    <p style="font-size: 0.85rem; color: var(--accent-green-bright); font-weight: 700;">+₹75 / Quintal higher than local mandi trader offer!</p>
+                </div>
+            </div>
+
+            <div id="wizardStep7" style="display: none; text-align: center;">
+                <i data-lucide="check-circle-2" style="width: 50px; height: 50px; color: var(--accent-green-bright); margin-bottom: 12px;"></i>
+                <h4 style="font-size: 1.3rem;">Ready to Publish to Live Marketplace!</h4>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+                <button class="btn btn-secondary" onclick="MKDashboard.prevWizardStep()">Back</button>
+                <button class="btn btn-primary" onclick="MKDashboard.nextWizardStep()">Continue Step <i data-lucide="arrow-right"></i></button>
             </div>
         </div>
     </div>

@@ -148,7 +148,7 @@ window.MKData = {
             harvestDate: "18 Aug 2026",
             verified: true,
             isAuction: false,
-            image: "https://images.unsplash.com/photo-1567103472667-6898f3a79cf2?auto=format&fit=crop&w=800&q=80",
+            image: "https://images.unsplash.com/photo-1590779033100-9f60a05a013d?auto=format&fit=crop&w=800&q=80",
             category: "Oilseeds"
         },
         {
@@ -287,7 +287,7 @@ window.MKData = {
             harvestDate: "17 Aug 2026",
             verified: true,
             isAuction: false,
-            image: "https://images.unsplash.com/photo-1567103472667-6898f3a79cf2?auto=format&fit=crop&w=800&q=80",
+            image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
             category: "Oilseeds"
         }
     ],

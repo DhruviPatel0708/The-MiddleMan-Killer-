@@ -259,6 +259,15 @@ window.MKApp = {
     switchView(viewId) {
         const role = this.userSession ? this.userSession.role : 'guest';
 
+        if (viewId === 'trustScoreSection') {
+            this.switchView('farmerDashboardView');
+            setTimeout(() => {
+                const el = document.getElementById('trustScoreSection');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 150);
+            return;
+        }
+
         if (viewId === 'adminDashboardView' && role !== 'admin') {
             this.notify('ACCESS DENIED', 'Admin credentials required to access system command center.', 'orange');
             this.openModal('authModal');
