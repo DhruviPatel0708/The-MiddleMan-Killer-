@@ -5,8 +5,10 @@
 window.MKApp = {
     userSession: null,
     activeView: 'landingView',
+    currentTheme: localStorage.getItem('mk_theme_mode') || 'dark',
 
     init() {
+        this.initTheme();
         this.initLucide();
         this.initTicker();
         this.initAuthSession();
@@ -28,6 +30,26 @@ window.MKApp = {
         if (window.MKLogistics) window.MKLogistics.initMap();
 
         console.log("🌾 The Middleman Killer Platform Initialized with Multi-Language & Gujarat Map!");
+    },
+
+    initTheme() {
+        if (this.currentTheme === 'light') {
+            document.body.classList.add('light-mode');
+        } else {
+            document.body.classList.remove('light-mode');
+        }
+    },
+
+    toggleWebsiteTheme() {
+        this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('mk_theme_mode', this.currentTheme);
+        this.initTheme();
+        this.renderDynamicNavigation();
+        if (window.MKLogistics && window.MKLogistics.map) {
+            window.MKLogistics.setMapTileStyle(this.currentTheme);
+            window.MKLogistics.renderMapToggleOverlay();
+        }
+        this.notify('THEME TOGGLED', `Switched website to ${this.currentTheme.toUpperCase()} mode`, 'gold');
     },
 
     initLucide() {
@@ -80,7 +102,7 @@ window.MKApp = {
         }
     },
 
-    loginWithCredentials(identifier, password) {
+    async loginWithCredentials(identifier, password) {
         if (!identifier || !identifier.trim()) {
             this.notify('LOGIN ERROR', 'Please enter your email or mobile number.', 'orange');
             return;
@@ -94,29 +116,24 @@ window.MKApp = {
         const loginBtn = document.getElementById('loginSubmitBtn');
         if (loginBtn) loginBtn.innerHTML = '<i data-lucide="loader" class="animate-spin"></i> Authenticating...';
 
-        setTimeout(() => {
-            if (loginBtn) loginBtn.innerHTML = 'Sign In';
+        const user = await window.MKAPI.login(identifier.trim(), password);
 
-            const matched = window.MKData.demoAccounts.find(acc => 
-                (acc.email.toLowerCase() === identifier.trim().toLowerCase() || acc.mobile === identifier.trim())
-                && acc.password === password
-            );
+        if (loginBtn) loginBtn.innerHTML = 'Sign In';
 
-            if (matched) {
-                this.loginUserSession({
-                    name: matched.name,
-                    email: matched.email,
-                    mobile: matched.mobile,
-                    role: matched.role,
-                    verified: matched.verified,
-                    avatar: matched.avatar
-                });
-                this.closeModal('authModal');
-                this.notify('WELCOME BACK', `Logged in as ${matched.name} (${matched.role.toUpperCase()})`, 'green');
-            } else {
-                this.notify('INVALID CREDENTIALS', 'Invalid email/mobile number or password.', 'orange');
-            }
-        }, 600);
+        if (user) {
+            this.loginUserSession({
+                name: user.name,
+                email: user.email,
+                mobile: user.mobile,
+                role: user.role,
+                verified: user.verified,
+                avatar: user.avatar || '🌱'
+            });
+            this.closeModal('authModal');
+            this.notify('WELCOME BACK', `Logged in as ${user.name} (${user.role.toUpperCase()})`, 'green');
+        } else {
+            this.notify('INVALID CREDENTIALS', 'Invalid email/mobile number or password.', 'orange');
+        }
     },
 
     logoutUser() {
@@ -187,11 +204,19 @@ window.MKApp = {
             </select>
         `;
 
+        // Theme Toggle Button Component
+        const themeToggleHTML = `
+            <button class="btn theme-toggle-btn" style="padding: 6px 12px; font-size: 0.82rem; background: rgba(18,55,42,0.8); border: 1px solid var(--border-glow); color: var(--accent-gold); font-weight:700; cursor:pointer;" onclick="MKApp.toggleWebsiteTheme()" title="Toggle Dark/Light Mode">
+                ${this.currentTheme === 'dark' ? '🌙 Dark' : '☀️ Light'}
+            </button>
+        `;
+
         // Update Top Right Actions
         if (navActions) {
             if (this.userSession) {
                 const avatar = this.userSession.avatar || (role === 'farmer' ? '🌱' : role === 'buyer' ? '🏢' : '🛡️');
                 navActions.innerHTML = `
+                    ${themeToggleHTML}
                     ${langSelectorHTML}
                     <button class="user-profile-badge" onclick="MKApp.toggleSidebar()">
                         <span>${avatar}</span>
@@ -204,6 +229,7 @@ window.MKApp = {
                 `;
             } else {
                 navActions.innerHTML = `
+                    ${themeToggleHTML}
                     ${langSelectorHTML}
                     <button class="btn btn-secondary" onclick="MKApp.openModal('authModal')">
                         <i data-lucide="user"></i> ${i18n ? i18n.getText('navLoginRegister') : 'Login / Register'}
@@ -289,6 +315,16 @@ window.MKApp = {
             this.activeView = viewId;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Update active class on top navigation links
+        document.querySelectorAll('#publicNavMenu .nav-link').forEach(link => {
+            const onclickAttr = link.getAttribute('onclick') || '';
+            if (onclickAttr.includes(`'${viewId}'`)) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
 
         this.closeSidebar();
         this.initLucide();

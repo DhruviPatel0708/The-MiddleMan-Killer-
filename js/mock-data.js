@@ -148,7 +148,7 @@ window.MKData = {
             harvestDate: "18 Aug 2026",
             verified: true,
             isAuction: false,
-            image: "https://images.unsplash.com/photo-1590779033100-9f60a05a013d?auto=format&fit=crop&w=800&q=80",
+            image: "https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=800&q=80",
             category: "Oilseeds"
         },
         {
