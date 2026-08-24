@@ -1,0 +1,96 @@
+[
+  {
+    "user_id": "USR_B030E51A9AB4",
+    "name": "Test Farmer",
+    "email": "farmer@test.local",
+    "password_hash": "pbkdf2_sha256$310000$ba2mu3826FlRImB22vwEGA$Rv0T3yltAl4JdnkAGcYg8aRSqWLEvRrGZBL-U87GSnE",
+    "role": "FARMER",
+    "permissions": [
+      "crop:create",
+      "crop:read",
+      "crop:update",
+      "auction:read",
+      "bid:read",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "recommendation:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787487582
+  },
+  {
+    "user_id": "USR_655B985C4E51",
+    "name": "Test Buyer",
+    "email": "buyer@test.local",
+    "password_hash": "pbkdf2_sha256$310000$Ifdz5u5BQ3EBLuDqcEMYbQ$LKNca_wTdSLqSLJ2tvsRNLpMv4Dqss_Feyj9oOpQiz4",
+    "role": "BUYER",
+    "permissions": [
+      "crop:read",
+      "auction:read",
+      "bid:create",
+      "bid:read",
+      "order:create",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787487582
+  },
+  {
+    "user_id": "USR_BC3DC2070962",
+    "name": "Test Logistics",
+    "email": "logistics@test.local",
+    "password_hash": "pbkdf2_sha256$310000$5YmEjJIJGVhWUNv7455iIw$Ec7ql7dS8ui0jBet6IK7vfsqYmhrrB9v2gSKMnMEE-E",
+    "role": "LOGISTICS",
+    "permissions": [
+      "crop:read",
+      "order:read",
+      "transaction:read",
+      "logistics:read",
+      "logistics:update",
+      "delivery:read",
+      "delivery:update",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787487583
+  },
+  {
+    "user_id": "USR_9D9B57BB994A",
+    "name": "Test Admin",
+    "email": "admin@test.local",
+    "password_hash": "pbkdf2_sha256$310000$aZle1IswYKpFV_AO2FRkgw$XZz6SEL8YfuL8IqrbjTtzv8XYp2LPYQwUsbAGlkvzXE",
+    "role": "ADMIN",
+    "permissions": [
+      "*"
+    ],
+    "is_active": true,
+    "created_at": 1787487583
+  },
+  {
+    "user_id": "USR_8457474D7BEA",
+    "name": "Test Support",
+    "email": "support@test.local",
+    "password_hash": "pbkdf2_sha256$310000$gHq1hso_5lUb4RKaSk6bNA$48S1uqIMgf7LVYLuMo6qbUGFXpScPA6vWNKQAze_Wrg",
+    "role": "SUPPORT",
+    "permissions": [
+      "support:create",
+      "support:read",
+      "support:update",
+      "dispute:read",
+      "dispute:update",
+      "settlement:read",
+      "settlement:update",
+      "user:read",
+      "report:read"
+    ],
+    "is_active": true,
+    "created_at": 1787487583
+  }
+]

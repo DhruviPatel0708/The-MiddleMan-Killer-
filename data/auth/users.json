@@ -1,0 +1,232 @@
+[
+  {
+    "user_id": "USR_34F4F1F7D57D",
+    "name": "System Admin",
+    "email": "user_management_admin@project.local",
+    "password_hash": "pbkdf2_sha256$310000$RQ8dt6Uizd5diaJtja1Cow$hL-Cp1sE2GPkRJ8iGJwfy2SXktHXVTHjpx02n8gFVx0",
+    "role": "ADMIN",
+    "permissions": [
+      "*"
+    ],
+    "is_active": true,
+    "created_at": 1787488804
+  },
+  {
+    "user_id": "USR_11D6485D4279",
+    "name": "Database Integrated User",
+    "email": "database_integrated_user@project.local",
+    "password_hash": "pbkdf2_sha256$310000$S0u1Dp8DcMK2VlmsvC5FXw$oVxzvHXeV8vkGfJDH_MHn-HznI-9DOIE3aAYs5li3Io",
+    "role": "BUYER",
+    "permissions": [
+      "crop:read",
+      "auction:read",
+      "bid:create",
+      "bid:read",
+      "order:create",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787488805
+  },
+  {
+    "user_id": "USR_31C20A0B217E",
+    "name": "Crop Management Farmer",
+    "email": "crop_management_farmer@project.local",
+    "password_hash": "pbkdf2_sha256$310000$KXBRHHwKgCBSlFlCI6b0PQ$QhdWdi0DtCuwN-lTCkKbbwOEcqmo4o1MUvpIm62-Y9w",
+    "role": "FARMER",
+    "permissions": [
+      "crop:create",
+      "crop:read",
+      "crop:update",
+      "auction:read",
+      "bid:read",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "recommendation:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787494719
+  },
+  {
+    "user_id": "USR_D552115F1A49",
+    "name": "Auction Test Farmer",
+    "email": "auction_test_farmer@project.local",
+    "password_hash": "pbkdf2_sha256$310000$V56Q4qgaGLSXCBwPBJ-nsQ$jlEq9Zu-80u6myaNx3jaqQyddrJV0CRZeBuXJyZtoOE",
+    "role": "FARMER",
+    "permissions": [
+      "crop:create",
+      "crop:read",
+      "crop:update",
+      "auction:read",
+      "bid:read",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "recommendation:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787495389
+  },
+  {
+    "user_id": "USR_5ACB9122CF66",
+    "name": "Auction Test Buyer",
+    "email": "auction_test_buyer@project.local",
+    "password_hash": "pbkdf2_sha256$310000$qT51XfOjUrCqlM8w_QlIsw$YgJXOD84zFX9mHguWzmvFqxv2HFrZ6yMCrG2PJtnPSc",
+    "role": "BUYER",
+    "permissions": [
+      "crop:read",
+      "auction:read",
+      "bid:create",
+      "bid:read",
+      "order:create",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787495505
+  },
+  {
+    "user_id": "USR_36093EBAC8F9",
+    "name": "Order Test Farmer",
+    "email": "order_test_farmer@project.local",
+    "password_hash": "pbkdf2_sha256$310000$PYer7XO_sgR_Gpfo_hhvEQ$EUy8fMB3N-pPjVLK4M5O1-C0WO5DCSeKLmewR0ZFJic",
+    "role": "FARMER",
+    "permissions": [
+      "crop:create",
+      "crop:read",
+      "crop:update",
+      "auction:read",
+      "bid:read",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "recommendation:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787497318
+  },
+  {
+    "user_id": "USR_F0315BC8D77D",
+    "name": "Payment Test Farmer",
+    "email": "payment_test_farmer@project.local",
+    "password_hash": "pbkdf2_sha256$310000$Oo-6Ga7fN-Imf2nCxNT0yA$lG9jzhINftfOIqkiCm-k8fLL-O-KMf_ogQIJv4ESZSE",
+    "role": "FARMER",
+    "permissions": [
+      "crop:create",
+      "crop:read",
+      "crop:update",
+      "auction:read",
+      "bid:read",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "recommendation:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787501021
+  },
+  {
+    "user_id": "USR_D3BDF59645E6",
+    "name": "Reports Test Farmer",
+    "email": "reports_test_farmer@project.local",
+    "password_hash": "pbkdf2_sha256$310000$Vohc6XzrPbx7HG-ESapMlg$6Kqnhfb8l0EGj9Q8qf7-5taDpVpNDrBMKIRmhEP-Kv0",
+    "role": "FARMER",
+    "permissions": [
+      "crop:create",
+      "crop:read",
+      "crop:update",
+      "auction:read",
+      "bid:read",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "recommendation:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787501142
+  },
+  {
+    "user_id": "USR_BEB9475FE5F4",
+    "name": "Support Test Farmer",
+    "email": "support_test_farmer@project.local",
+    "password_hash": "pbkdf2_sha256$310000$jCAXlexN92J7UedK3gKcSw$Al2vg6BSjjsElwxJ1VOIbzLaP_edAm0Sn1_jjANhBzs",
+    "role": "FARMER",
+    "permissions": [
+      "crop:create",
+      "crop:read",
+      "crop:update",
+      "auction:read",
+      "bid:read",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "recommendation:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787502276
+  },
+  {
+    "user_id": "USR_D6FA1D3AE8E1",
+    "name": "Notification Test Farmer",
+    "email": "notification_test_farmer@project.local",
+    "password_hash": "pbkdf2_sha256$310000$DFKbqPGfZ01ZydO3q8Es0Q$OGSNzQ_fl7Wo6dJ4YM42rBz0rXMVn7DQrMB_rAv_hNY",
+    "role": "FARMER",
+    "permissions": [
+      "crop:create",
+      "crop:read",
+      "crop:update",
+      "auction:read",
+      "bid:read",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "recommendation:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787502569
+  },
+  {
+    "user_id": "USR_50539D9BA7AD",
+    "name": "Security Test Farmer",
+    "email": "security_test_farmer@project.local",
+    "password_hash": "pbkdf2_sha256$310000$bvsLq1-UInhDWo6-WCr1Iw$AtVkkhN8MA0luKFKAwETNhaZAHyLCcpceswgGW615eI",
+    "role": "FARMER",
+    "permissions": [
+      "crop:create",
+      "crop:read",
+      "crop:update",
+      "auction:read",
+      "bid:read",
+      "order:read",
+      "transaction:read",
+      "payment:read",
+      "recommendation:read",
+      "report:read",
+      "support:create"
+    ],
+    "is_active": true,
+    "created_at": 1787504563
+  }
+]
