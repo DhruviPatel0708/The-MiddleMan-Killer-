@@ -736,23 +736,181 @@
         </div>
     </div>
 
-    <!-- MODAL 3: AUTHENTICATION -->
+    <!-- MODAL 3: AUTHENTICATION & MULTI-STEP REGISTRATION -->
     <div class="modal-overlay" id="authModal">
         <div class="modal-box" style="max-width: 580px;">
             <button class="modal-close-btn" onclick="MKApp.closeModal('authModal')"><i data-lucide="x"></i></button>
+            
+            <!-- Tab Switcher: Sign In vs Create Account -->
+            <div style="display: flex; background: rgba(16,20,17,0.6); padding: 4px; border-radius: 12px; margin-bottom: 24px; border: 1px solid var(--border-subtle);">
+                <button class="btn btn-primary" id="authTabLogin" style="flex:1; padding: 10px; border-radius: 8px; font-size: 0.9rem;" onclick="document.getElementById('authLoginView').style.display='block'; document.getElementById('authRegisterView').style.display='none'; this.className='btn btn-primary'; document.getElementById('authTabRegister').className='btn';" data-i18n="authSignIn">
+                    Sign In
+                </button>
+                <button class="btn" id="authTabRegister" style="flex:1; padding: 10px; border-radius: 8px; font-size: 0.9rem;" onclick="document.getElementById('authLoginView').style.display='none'; document.getElementById('authRegisterView').style.display='block'; this.className='btn btn-primary'; document.getElementById('authTabLogin').className='btn';" data-i18n="authCreateAccount">
+                    Create Account
+                </button>
+            </div>
+
+            <!-- Login View -->
             <div id="authLoginView">
                 <h3 style="font-size: 1.4rem; margin-bottom: 6px;" data-i18n="authSignIn">Sign In to Your Account</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Direct agricultural trading platform for farmers and buyers.</p>
+
                 <div class="form-group">
                     <label data-i18n="lblEmailOrMobile">Email Address or Mobile Number</label>
-                    <input type="text" class="form-control" id="loginIdentifier" placeholder="Enter email or mobile number" />
+                    <input type="text" class="form-control" id="loginIdentifier" placeholder="Enter email or mobile number" data-i18n-placeholder="phEmailOrMobile" />
                 </div>
-                <div class="form-group">
+
+                <div class="form-group" style="position: relative;">
                     <label data-i18n="lblPassword">Password</label>
-                    <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" />
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" data-i18n-placeholder="phPassword" />
+                    <button type="button" style="position: absolute; right: 12px; top: 38px; background: none; border: none; color: var(--text-muted); cursor: pointer;" onclick="const p=document.getElementById('loginPassword'); p.type = p.type==='password' ? 'text' : 'password';">
+                        <i data-lucide="eye"></i>
+                    </button>
                 </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; font-size: 0.85rem;">
+                    <label style="display: flex; align-items: center; gap: 8px; color: var(--text-muted); cursor: pointer;">
+                        <input type="checkbox" checked /> <span data-i18n="lblRememberMe">Remember Me</span>
+                    </label>
+                    <a href="#" style="color: var(--accent-gold); text-decoration: none;" onclick="MKApp.notify('FORGOT PASSWORD', 'A password reset link was sent to your registered contact.', 'gold');" data-i18n="btnForgotPwd">Forgot Password?</a>
+                </div>
+
                 <button class="btn btn-primary" id="loginSubmitBtn" style="width: 100%;" onclick="MKApp.loginWithCredentials(document.getElementById('loginIdentifier').value, document.getElementById('loginPassword').value)">
                     <span data-i18n="btnSignInSubmit">Sign In</span>
                 </button>
+
+                <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-subtle); text-align: center;">
+                    <small style="color: var(--text-muted); display: block; margin-bottom: 10px;">QUICK DEMO LOGINS:</small>
+                    <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;" onclick="MKApp.loginWithCredentials('farmer@middlemankiller.com', 'Farmer@123')">
+                            🌱 Demo Farmer
+                        </button>
+                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;" onclick="MKApp.loginWithCredentials('buyer@middlemankiller.com', 'Buyer@123')">
+                            🏢 Demo Buyer
+                        </button>
+                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;" onclick="MKApp.loginWithCredentials('admin@middlemankiller.com', 'Admin@123')">
+                            🛡️ Demo Admin
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registration View -->
+            <div id="authRegisterView" style="display: none;">
+                <div id="regStepView1">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 6px;" data-i18n="authCreateAccount">CREATE YOUR ACCOUNT</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;" data-i18n="lblSelectRole">Step 1 of 5: Select your platform role</p>
+
+                    <div class="role-select-grid">
+                        <div class="role-card-btn active" id="roleCardBtn_farmer" onclick="MKDashboard.selectRegRole('farmer')">
+                            <div class="role-icon">🌱</div>
+                            <div style="font-weight: 800; font-size: 1.1rem; color: var(--text-ivory);" data-i18n="roleFarmerTitle">FARMER</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;" data-i18n="roleFarmerDesc">Sell crops directly, get fair prices & escrow payouts.</div>
+                        </div>
+
+                        <div class="role-card-btn" id="roleCardBtn_buyer" onclick="MKDashboard.selectRegRole('buyer')">
+                            <div class="role-icon">🏢</div>
+                            <div style="font-weight: 800; font-size: 1.1rem; color: var(--text-ivory);" data-i18n="roleBuyerTitle">BUYER</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;" data-i18n="roleBuyerDesc">Source quality crops directly from verified farms.</div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%;" onclick="MKDashboard.nextRegStep()">Continue Step 2 <i data-lucide="arrow-right"></i></button>
+                </div>
+
+                <div id="regStepView2" style="display: none;">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 6px;" data-i18n="stepPersonalDetails">PERSONAL / BUSINESS DETAILS</h3>
+
+                    <div id="farmerRegFields">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" class="form-control" id="regFarmerName" value="Rajesh Patel" />
+                        </div>
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control"><option>Gujarat</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control"><option>Anand</option><option>Rajkot</option><option>Surat</option><option>Mehsana</option></select>
+                        </div>
+                    </div>
+
+                    <div id="buyerRegFields" style="display: none;">
+                        <div class="form-group">
+                            <label>Business Name</label>
+                            <input type="text" class="form-control" id="regBuyerCompany" value="Shree Foods Pvt. Ltd." />
+                        </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; margin-top:20px;">
+                        <button class="btn btn-secondary" onclick="MKDashboard.prevRegStep()">Back</button>
+                        <button class="btn btn-primary" onclick="MKDashboard.nextRegStep()">Continue Step 3 <i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div id="regStepView3" style="display: none;">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 6px;" data-i18n="stepContactInfo">CONTACT INFORMATION</h3>
+
+                    <div class="form-group">
+                        <label>Mobile Number (+91)</label>
+                        <input type="text" class="form-control" id="regMobile" value="9876543210" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" id="regEmail" value="rajesh@middlemankiller.com" />
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; margin-top:20px;">
+                        <button class="btn btn-secondary" onclick="MKDashboard.prevRegStep()">Back</button>
+                        <button class="btn btn-primary" onclick="MKDashboard.nextRegStep()">Continue Step 4 <i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div id="regStepView4" style="display: none;">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 6px;" data-i18n="stepPasswordSecurity">PASSWORD & SECURITY</h3>
+
+                    <div class="form-group">
+                        <label>Create Password</label>
+                        <input type="password" class="form-control" id="regPassword" value="Farmer@123" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-control" id="regConfirmPassword" value="Farmer@123" />
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between;">
+                        <button class="btn btn-secondary" onclick="MKDashboard.prevRegStep()">Back</button>
+                        <button class="btn btn-primary" onclick="MKDashboard.nextRegStep()">Verify OTP <i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div id="regStepView5" style="display: none; text-align: center;">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 6px;" data-i18n="stepOtpVerify">VERIFY YOUR ACCOUNT</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px;" data-i18n="otpNotice">We've sent a 6-digit verification code to your registered contact.</p>
+
+                    <div class="otp-box-group">
+                        <input type="text" class="otp-digit-input" maxlength="1" value="4" />
+                        <input type="text" class="otp-digit-input" maxlength="1" value="8" />
+                        <input type="text" class="otp-digit-input" maxlength="1" value="2" />
+                        <input type="text" class="otp-digit-input" maxlength="1" value="1" />
+                        <input type="text" class="otp-digit-input" maxlength="1" value="9" />
+                        <input type="text" class="otp-digit-input" maxlength="1" value="0" />
+                    </div>
+
+                    <button class="btn btn-gold" style="width: 100%;" onclick="MKDashboard.nextRegStep()" data-i18n="btnVerifyAccount">VERIFY & CREATE ACCOUNT</button>
+                </div>
+
+                <div id="regStepView6" style="display: none; text-align: center; padding: 20px 0;">
+                    <div style="width: 70px; height: 70px; border-radius: 50%; background: rgba(46,204,113,0.2); border: 2px solid var(--accent-green-bright); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; color: var(--accent-green-bright); font-size: 2rem;">
+                        ✓
+                    </div>
+                    <h3 style="font-size: 1.6rem; color: var(--accent-gold); margin-bottom: 8px;" data-i18n="accountCreatedTitle">ACCOUNT CREATED SUCCESSFULLY</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;" data-i18n="accountCreatedSub">Welcome to The Middleman Killer direct agricultural ecosystem!</p>
+                </div>
             </div>
         </div>
     </div>
