@@ -97,7 +97,10 @@ window.MKApp = {
         setTimeout(() => {
             if (loginBtn) loginBtn.innerHTML = 'Sign In';
 
-            const matched = window.MKData.demoAccounts.find(acc => 
+            const registered = JSON.parse(localStorage.getItem('mk_registered_accounts') || '[]');
+            const allAccounts = [...window.MKData.demoAccounts, ...registered];
+
+            const matched = allAccounts.find(acc => 
                 (acc.email.toLowerCase() === identifier.trim().toLowerCase() || acc.mobile === identifier.trim())
                 && acc.password === password
             );

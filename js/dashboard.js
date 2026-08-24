@@ -169,18 +169,25 @@ window.MKDashboard = {
 
     completeRegistration() {
         const name = this.regRole === 'farmer' 
-            ? (document.getElementById('regFarmerName')?.value || 'Rajesh Patel')
-            : (document.getElementById('regBuyerCompany')?.value || 'Shree Foods Pvt. Ltd.');
+            ? (document.getElementById('regFarmerName')?.value || 'Registered Farmer')
+            : (document.getElementById('regBuyerCompany')?.value || 'Registered Buyer');
         const email = document.getElementById('regEmail')?.value || 'user@middlemankiller.com';
         const mobile = document.getElementById('regMobile')?.value || '9876543210';
+        const pwd = document.getElementById('regPassword')?.value || 'Farmer@123';
 
         const userObj = {
             name: name,
             email: email,
             mobile: mobile,
+            password: pwd,
             role: this.regRole,
-            verified: true
+            verified: true,
+            avatar: this.regRole === 'farmer' ? '🌱' : '🏢'
         };
+
+        const registered = JSON.parse(localStorage.getItem('mk_registered_accounts') || '[]');
+        registered.push(userObj);
+        localStorage.setItem('mk_registered_accounts', JSON.stringify(registered));
 
         window.MKApp.loginUserSession(userObj);
         window.MKApp.closeModal('authModal');

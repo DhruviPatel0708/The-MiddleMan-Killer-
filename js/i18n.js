@@ -54,7 +54,7 @@ window.MKI18n = {
             nodeDelivery: "🏠 DELIVERY",
 
             // Farmer Dashboard
-            farmerGreeting: "Good Morning, Rajesh Patel 👋",
+            farmerGreeting: "Good Morning 👋",
             farmerSubhead: "Your farm in Anand, Gujarat is currently performing +14% above regional benchmark.",
             btnRegisterCrop: "REGISTER NEW CROP",
             statTotalCrops: "Total Crops Registered",
@@ -159,7 +159,7 @@ window.MKI18n = {
             // KrishiAI Chatbot
             krishiTitle: "KrishiAI Assistant",
             krishiSub: "Active Voice & Text AI",
-            krishiWelcome: "Namaste Rajesh! I'm KrishiAI, your agricultural intelligence assistant. How can I help your farm today?",
+            krishiWelcome: "Namaste! I'm KrishiAI, your agricultural intelligence assistant. How can I help your farm today?",
             krishiPlaceholder: "Ask today's price, weather, auction advice..."
         },
 
@@ -210,7 +210,7 @@ window.MKI18n = {
             nodeDelivery: "🏠 ડિલિવરી",
 
             // Farmer Dashboard
-            farmerGreeting: "સુપ્રભાત, રાજેશ પટેલ 👋",
+            farmerGreeting: "સુપ્રભાત 👋",
             farmerSubhead: "આણંદ, ગુજરાતનું તમારું ખેતર પ્રાદેશિક સરેરાશ કરતાં +૧૪% સારું પ્રદર્શન કરી રહ્યું છે.",
             btnRegisterCrop: "નવો પાક ઉમેરો",
             statTotalCrops: "કુલ નોંધાયેલ પાક",
@@ -366,7 +366,7 @@ window.MKI18n = {
             nodeDelivery: "🏠 डिलीवरी",
 
             // Farmer Dashboard
-            farmerGreeting: "शुभ प्रभात, राजेश पटेल 👋",
+            farmerGreeting: "शुभ प्रभात 👋",
             farmerSubhead: "आनंद, गुजरात में आपका खेत क्षेत्रीय औसत से +14% बेहतर प्रदर्शन कर रहा है।",
             btnRegisterCrop: "नई फसल पंजीकृत करें",
             statTotalCrops: "कुल पंजीकृत फसलें",

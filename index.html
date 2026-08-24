@@ -463,7 +463,7 @@
                 <div>
                     <span class="badge badge-gold mb-2" data-i18n="spotlightItem">SPOTLIGHT ITEM #AU-2849</span>
                     <h2 style="font-size: 2.2rem; margin-bottom: 8px;">Paddy (Rice)</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 16px;"><i data-lucide="map-pin"></i> Rajesh Patel's Farm — Anand, Gujarat | 150 Quintals</p>
+                    <p style="color: var(--text-muted); margin-bottom: 16px;"><i data-lucide="map-pin"></i> Verified Farm — Anand, Gujarat | 150 Quintals</p>
                     
                     <div style="display: flex; gap: 20px; margin-bottom: 20px;">
                         <div>
@@ -604,7 +604,7 @@
                         <div class="escrow-stage-num">04</div>
                         <div style="flex:1;">
                             <div style="font-weight:700; font-size:1rem;" data-i18n="step4FarmerPayout">Step 04: Instant Farmer Payout Release</div>
-                            <div style="font-size:0.85rem; color:var(--text-muted);">Direct instant transfer to Rajesh Patel SBI Account</div>
+                            <div style="font-size:0.85rem; color:var(--text-muted);">Direct instant transfer to Farmer SBI Account</div>
                         </div>
                         <button class="btn btn-gold" style="padding: 6px 14px; font-size:0.8rem;" onclick="MKDashboard.releaseEscrowFunds()">
                             <span data-i18n="btnSimulateRelease">Simulate Delivery Release</span>
@@ -861,14 +861,8 @@
                 </button>
 
                 <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-subtle); text-align: center;">
-                    <small style="color: var(--text-muted); display: block; margin-bottom: 10px;">QUICK DEMO LOGINS:</small>
+                    <small style="color: var(--text-muted); display: block; margin-bottom: 10px;">SYSTEM ADMIN ACCESS:</small>
                     <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
-                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;" onclick="MKApp.loginWithCredentials('farmer@middlemankiller.com', 'Farmer@123')">
-                            🌱 Demo Farmer
-                        </button>
-                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;" onclick="MKApp.loginWithCredentials('buyer@middlemankiller.com', 'Buyer@123')">
-                            🏢 Demo Buyer
-                        </button>
                         <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;" onclick="MKApp.loginWithCredentials('admin@middlemankiller.com', 'Admin@123')">
                             🛡️ Demo Admin
                         </button>
@@ -905,7 +899,7 @@
                     <div id="farmerRegFields">
                         <div class="form-group">
                             <label>Full Name</label>
-                            <input type="text" class="form-control" id="regFarmerName" value="Rajesh Patel" />
+                            <input type="text" class="form-control" id="regFarmerName" placeholder="Enter your full name" />
                         </div>
                         <div class="form-group">
                             <label>State</label>
@@ -920,7 +914,7 @@
                     <div id="buyerRegFields" style="display: none;">
                         <div class="form-group">
                             <label>Business Name</label>
-                            <input type="text" class="form-control" id="regBuyerCompany" value="Shree Foods Pvt. Ltd." />
+                            <input type="text" class="form-control" id="regBuyerCompany" placeholder="Enter business / company name" />
                         </div>
                     </div>
 
@@ -935,12 +929,12 @@
 
                     <div class="form-group">
                         <label>Mobile Number (+91)</label>
-                        <input type="text" class="form-control" id="regMobile" value="9876543210" />
+                        <input type="text" class="form-control" id="regMobile" placeholder="Enter 10-digit mobile number" />
                     </div>
 
                     <div class="form-group">
                         <label>Email Address</label>
-                        <input type="email" class="form-control" id="regEmail" value="rajesh@middlemankiller.com" />
+                        <input type="email" class="form-control" id="regEmail" placeholder="Enter your email address" />
                     </div>
 
                     <div style="display:flex; justify-content:space-between; margin-top:20px;">
@@ -954,12 +948,12 @@
 
                     <div class="form-group">
                         <label>Create Password</label>
-                        <input type="password" class="form-control" id="regPassword" value="Farmer@123" />
+                        <input type="password" class="form-control" id="regPassword" placeholder="Create a password" />
                     </div>
 
                     <div class="form-group">
                         <label>Confirm Password</label>
-                        <input type="password" class="form-control" id="regConfirmPassword" value="Farmer@123" />
+                        <input type="password" class="form-control" id="regConfirmPassword" placeholder="Confirm your password" />
                     </div>
 
                     <div style="display:flex; justify-content:space-between;">
@@ -1028,7 +1022,7 @@
         </div>
         <div class="krishi-chat-messages" id="krishiChatMessages">
             <div class="chat-bubble bot" data-i18n="krishiWelcome">
-                <strong>KrishiAI:</strong> Namaste Rajesh! I'm KrishiAI, your agricultural intelligence assistant. How can I help your farm today?
+                <strong>KrishiAI:</strong> Namaste! I'm KrishiAI, your agricultural intelligence assistant. How can I help your farm today?
             </div>
         </div>
         <div class="waveform-container">
